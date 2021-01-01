@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
+    fontFamily: 'Nunito-SemiBold',
     marginTop: 20,
     fontSize: 20,
     color: '#112340',

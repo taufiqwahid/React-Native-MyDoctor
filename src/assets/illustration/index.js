@@ -1,3 +1,4 @@
 import ILLogo from './logo.svg';
+import ILGetStarted from './GetStarted.png';
 
-export {ILLogo};
+export {ILLogo, ILGetStarted};
