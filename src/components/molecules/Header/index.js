@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {IconBackDark} from '../../../assets/illustration';
+import {Fonts} from '../../../utils';
 
 import {colors} from '../../../utils/colors';
 import Button from '../../atoms/Button';
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
   title: {
     marginRight: 40,
     fontSize: 20,
-    fontFamily: 'Nunito-SemiBold',
+    fontFamily: Fonts.primary[600],
     color: colors.text.primary,
     flex: 1,
     textAlign: 'center',

@@ -5,7 +5,7 @@ import {Button, Gap, Header, Input} from '../../components';
 const Register = ({navigation}) => {
   return (
     <View>
-      <Header title="Daftar Akun" onPress={() => (alert = 'asdasdas')} />
+      <Header title="Daftar Akun" onPress={() => navigation.goBack()} />
       <View style={styles.form}>
         <Gap height={40} />
         <Input label="Full Name" />
@@ -16,7 +16,10 @@ const Register = ({navigation}) => {
         <Gap height={24} />
         <Input label="Password" />
         <Gap height={40} />
-        <Button title="Continue" />
+        <Button
+          title="Continue"
+          onPress={() => navigation.navigate('UploadPhoto')}
+        />
       </View>
     </View>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {Fonts} from '../../../utils';
 import {colors} from '../../../utils/colors';
 import IconOnly from './iconOnly';
 
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
   container: (type) => ({
     backgroundColor:
       type === 'secondary'
-        ? colors.button.primary.text
+        ? colors.button.secondary.background
         : colors.button.primary.background,
     borderRadius: 10,
     padding: 10,
@@ -28,12 +29,11 @@ const styles = StyleSheet.create({
 
   title: (type) => ({
     color:
-      type === 'secondary' ? colors.text.primary : colors.button.primary.text,
-    fontFamily: 'Nunito-SemiBold',
-    fontStyle: 'normal',
-    fontWeight: '600',
+      type === 'secondary'
+        ? colors.button.secondary.text
+        : colors.button.primary.text,
+    fontFamily: Fonts.primary[600],
     fontSize: 18,
-    lineHeight: 25,
     textAlign: 'center',
   }),
 });

@@ -1,9 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import Splash from '../pages/Splash';
-import GetStarted from '../pages/GetStarted';
-import Login from '../pages/Login';
-import Register from '../pages/Register';
+import {GetStarted, Login, Register, Splash, UploadPhoto} from '../pages';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +25,11 @@ export default function Router() {
       <Stack.Screen
         name="Register"
         component={Register}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="UploadPhoto"
+        component={UploadPhoto}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
