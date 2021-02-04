@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {ILAddPhoto, ILNullPhoto} from '../../assets';
+import {IconAddPhoto, ILNullPhoto} from '../../assets';
 import {Button, Gap, Header, Link} from '../../components';
 import {colors, Fonts} from '../../utils';
 
@@ -12,7 +12,7 @@ const UploadPhoto = () => {
         <View style={styles.content}>
           <View style={styles.wrapperAvatar}>
             <Image source={ILNullPhoto} style={styles.avatar} />
-            <ILAddPhoto style={styles.addPhoto} />
+            <IconAddPhoto style={styles.addPhoto} />
           </View>
           <Gap height={26} />
           <Text style={styles.name}>Shayna Melinda</Text>
@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
   },
   content: {
     alignItems: 'center',
-
     flex: 1,
     justifyContent: 'center',
   },
@@ -70,12 +69,11 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.primary[600],
     fontSize: 24,
   },
-
   job: {
     marginTop: 4,
     fontFamily: Fonts.primary.normal,
     fontSize: 18,
-    color: Fonts.text.secondary,
+    color: colors.text.secondary,
   },
   button: {
     marginHorizontal: 40,

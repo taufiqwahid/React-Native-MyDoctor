@@ -8,11 +8,17 @@ export const mainColors = {
   secondary4: '#7D8797',
   warning1: '#F8B459',
   danger1: '#E06379',
-  dark1: '#112340',
+  dark2: '#112340',
+  dark1: '#495a75',
   blue1: '#0066CB',
 };
 
 export const colors = {
+  default: mainColors.primary2,
+  dark: mainColors.dark2,
+  item: {
+    primary1: '#EDFCFD',
+  },
   button: {
     primary: {
       background: mainColors.primary2,
@@ -29,14 +35,16 @@ export const colors = {
     },
   },
   text: {
-    primary: mainColors.dark1,
+    primary: mainColors.dark2,
     secondary: mainColors.secondary4,
+    menuInActive: mainColors.dark1,
+    menuActive: mainColors.primary2,
   },
   input: {
     secondary: mainColors.secondary2,
     danger: mainColors.danger1,
     text: {
-      primary: mainColors.dark1,
+      primary: mainColors.dark2,
       danger: mainColors.danger1,
     },
   },

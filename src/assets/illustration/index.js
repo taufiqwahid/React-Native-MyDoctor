@@ -1,8 +1,17 @@
 import ILLogo from './logo.svg';
 import ILGetStarted from './GetStarted.png';
-import IconBackDark from './arrow_back.svg';
 import ILNullPhoto from './UserPhoto.png';
-import ILAddPhoto from './AddPhoto.svg';
-import ILRemove from './RemovePhoto.svg';
+import ILLDokterAnak from './ILL_dokter_anak.svg';
+import ILLDokterObat from './ILL_dokter_obat.svg';
+import ILLDokterPsikiater from './ILL_dokter_psikiater.svg';
+import ILLDokterUmum from './ILL_dokter_umum.svg';
 
-export {ILLogo, ILGetStarted, IconBackDark, ILRemove, ILAddPhoto, ILNullPhoto};
+export {
+  ILLogo,
+  ILGetStarted,
+  ILNullPhoto,
+  ILLDokterAnak,
+  ILLDokterObat,
+  ILLDokterUmum,
+  ILLDokterPsikiater,
+};
