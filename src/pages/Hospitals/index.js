@@ -1,14 +1,67 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {ILLBGHospital} from '../../assets';
+import {Gap} from '../../components';
+import ListHospital from '../../components/molecules/ListHospital';
+import {colors, Fonts} from '../../utils';
 
 const Hospitals = () => {
   return (
-    <View>
-      <Text>Hospitals</Text>
+    <View style={styles.page}>
+      <ImageBackground source={ILLBGHospital} style={styles.bgImage}>
+        <Text style={styles.textTitle}>Nearby Hospitals</Text>
+        <Text style={styles.textStock}>3 Tersedia</Text>
+      </ImageBackground>
+
+      <View style={styles.content}>
+        <ScrollView>
+          <ListHospital />
+          <ListHospital />
+          <ListHospital />
+          <ListHospital />
+          <ListHospital />
+          <ListHospital />
+          <ListHospital />
+          <ListHospital />
+          <ListHospital />
+          <ListHospital />
+          <ListHospital />
+          <ListHospital />
+        </ScrollView>
+      </View>
     </View>
   );
 };
 
 export default Hospitals;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  page: {backgroundColor: colors.dark, flex: 1},
+  bgImage: {
+    height: 240,
+    alignItems: 'center',
+    paddingTop: 30,
+  },
+  textTitle: {
+    color: 'white',
+    fontSize: 20,
+    fontFamily: Fonts.primary[600],
+  },
+  textStock: {
+    color: 'white',
+    fontSize: 14,
+
+    fontFamily: Fonts.primary[300],
+  },
+  content: {
+    marginTop: -20,
+    flex: 1,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    paddingTop: 16,
+  },
+  gap: {
+    backgroundColor: 'white',
+  },
+});

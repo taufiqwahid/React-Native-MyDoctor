@@ -16,6 +16,7 @@ export const mainColors = {
 export const colors = {
   default: mainColors.primary2,
   dark: mainColors.dark2,
+  secondary: mainColors.secondary2,
   item: {
     primary1: '#EDFCFD',
   },
