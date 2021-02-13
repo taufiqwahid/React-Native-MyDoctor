@@ -1,0 +1,22 @@
+{
+    "data" : [
+        {
+            "id":1,
+            "name":"Abd Wahid",
+            "title":"Psychiatric Hospital",
+            "address":"Jln. Mustafa Dg Bunga No.105"
+        },
+        {
+            "id":2,
+            "name":"Sahabat Ibu",
+            "title":"Children's Hospital",
+            "address":"Jln. Paccinogang Sejahtera No.89"
+        },
+        {
+            "id":3,
+            "name":"Wahidin Sudirohusodo",
+            "title":"General Hospital",
+            "address":"Jln. Abd Muthalib No.134"
+        }
+    ]
+}

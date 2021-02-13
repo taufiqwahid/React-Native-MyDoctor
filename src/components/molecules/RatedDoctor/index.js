@@ -1,23 +1,46 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {DDokter1, IconStarRated} from '../../../assets';
+import {DDokter1, DDokter2, DDokter3, IconStarRated} from '../../../assets';
 import {colors} from '../../../utils/colors';
 import {Fonts} from '../../../utils/fonts';
 
-const RatedDoctor = () => {
+const RatedDoctor = ({specialis, name, rated}) => {
+  const Rated = () => {
+    const RatedIcon = [];
+    for (let index = 0; index < rated; index++) {
+      RatedIcon.push(<IconStarRated key={index} />);
+    }
+    return RatedIcon;
+  };
+
+  const Avatar = () => {
+    switch (specialis) {
+      case 'Dokter Psikiater':
+        return <Image source={DDokter2} style={styles.avatar} />;
+
+      case 'Dokter Anak':
+        return <Image source={DDokter2} style={styles.avatar} />;
+
+      case 'Dokter Umum':
+        return <Image source={DDokter3} style={styles.avatar} />;
+
+      case 'Dokter Obat':
+        return <Image source={DDokter1} style={styles.avatar} />;
+
+      default:
+        return <Image source={DDokter1} style={styles.avatar} />;
+    }
+  };
+
   return (
     <View style={styles.page}>
-      <Image source={DDokter1} style={styles.avatar} />
+      <Avatar />
       <View style={styles.profile}>
-        <Text style={styles.name}>Alexa Rachel</Text>
-        <Text style={styles.category}>Pediatrician</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.specialis}>{specialis}</Text>
       </View>
       <View style={styles.ratedDoctor}>
-        <IconStarRated />
-        <IconStarRated />
-        <IconStarRated />
-        <IconStarRated />
-        <IconStarRated />
+        <Rated />
       </View>
     </View>
   );
@@ -46,7 +69,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     fontFamily: Fonts.primary[600],
   },
-  category: {
+  specialis: {
     color: colors.text.secondary,
     fontFamily: Fonts.primary[400],
     fontSize: 12,

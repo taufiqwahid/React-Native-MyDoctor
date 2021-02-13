@@ -1,18 +1,28 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {DNews1} from '../../../assets';
-import {Fonts} from '../../../utils';
+import {DNews1, DNews2, DNews3} from '../../../assets';
+import {colors, Fonts} from '../../../utils';
 
-const NewsItem = () => {
+const NewsItem = ({title, time, index}) => {
+  const Picture = () => {
+    switch (index) {
+      case 1:
+        return <Image style={styles.picture} source={DNews1} />;
+      case 2:
+        return <Image style={styles.picture} source={DNews2} />;
+      case 3:
+        return <Image style={styles.picture} source={DNews3} />;
+      default:
+        return <Image style={styles.picture} source={DNews1} />;
+    }
+  };
   return (
     <View style={styles.page}>
       <View>
-        <Text style={styles.title}>
-          Is it safe to stay at home during coronavirus?
-        </Text>
-        <Text style={styles.time}>Today</Text>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.time}>{time}</Text>
       </View>
-      <Image style={styles.image} source={DNews1} />
+      <Picture key={index} />
     </View>
   );
 };
@@ -24,6 +34,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border.secondary,
   },
   title: {
     width: 177,
@@ -36,7 +48,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.primary[400],
     marginBottom: 12,
   },
-  image: {
+  picture: {
     height: 60,
     width: 80,
   },

@@ -1,15 +1,35 @@
 import React from 'react';
+import {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {ILLDokterUmum} from '../../../assets';
+import {
+  ILLDokterAnak,
+  ILLDokterObat,
+  ILLDokterPsikiater,
+  ILLDokterUmum,
+} from '../../../assets';
 import {colors, Fonts} from '../../../utils';
 
-const DoctorCategory = () => {
+const DoctorCategory = ({category}) => {
+  const Icon = () => {
+    if (category === 'dokter anak') {
+      return <ILLDokterAnak style={styles.image} />;
+    }
+    if (category === 'dokter umum') {
+      return <ILLDokterUmum style={styles.image} />;
+    }
+    if (category === 'dokter psikiater') {
+      return <ILLDokterPsikiater style={styles.image} />;
+    }
+    if (category === 'dokter obat') {
+      return <ILLDokterObat style={styles.image} />;
+    }
+  };
   return (
     <View style={styles.page}>
-      <ILLDokterUmum style={styles.image} />
+      <Icon />
       <View style={styles.text}>
         <Text style={styles.textButuh}>Saya butuh</Text>
-        <Text style={styles.textDokter}>dokter umum</Text>
+        <Text style={styles.textDokter}>{category}</Text>
       </View>
     </View>
   );

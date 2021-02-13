@@ -1,5 +1,6 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {categoryDoctors, doctors, news} from '../../assets';
 import {
   DoctorCategory,
   Gap,
@@ -23,33 +24,46 @@ const Doctors = () => {
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <View style={styles.DoctorCategory}>
                 <Gap width={16} />
-                <DoctorCategory />
-                <DoctorCategory />
-                <DoctorCategory />
-                <DoctorCategory />
-                <DoctorCategory />
+                {categoryDoctors.data.map((item) => {
+                  return (
+                    <DoctorCategory category={item.doctor} key={item.id} />
+                  );
+                })}
+
                 <Gap width={6} />
               </View>
             </ScrollView>
           </View>
-
+          <Gap height={16} />
           <Text>Top Rated Doctor</Text>
           <Gap height={16} />
           <View>
-            <RatedDoctor />
-            <RatedDoctor />
-            <RatedDoctor />
+            {doctors.data.map((item) => {
+              return (
+                <RatedDoctor
+                  key={item.id}
+                  name={item.name}
+                  specialis={item.specialis}
+                  rated={item.rated}
+                />
+              );
+            })}
           </View>
           <Gap height={16} />
           <Text>Good News</Text>
           <Gap height={16} />
           <View>
-            <NewsItem />
-            <View style={styles.lineNews} />
-            <NewsItem />
-            <View style={styles.lineNews} />
-            <NewsItem />
-            <View style={styles.lineNews} />
+            {news.data.map((item, index) => {
+              console.log(index);
+              return (
+                <NewsItem
+                  title={item.title}
+                  time={item.time}
+                  index={item.id}
+                  key={index}
+                />
+              );
+            })}
           </View>
           <Gap height={16} />
         </ScrollView>
@@ -84,9 +98,5 @@ const styles = StyleSheet.create({
   },
   DoctorCategory: {
     flexDirection: 'row',
-  },
-  lineNews: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
   },
 });

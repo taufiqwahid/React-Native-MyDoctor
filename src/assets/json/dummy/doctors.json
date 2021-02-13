@@ -1,0 +1,33 @@
+{
+    "data" : [
+        {
+          "id": 1,
+          "name": "Taufiq Wahid",
+          "chat": "Sedang mengetik",
+          "specialis" : "Dokter Psikiater",
+          "rated" :5
+        },
+        {
+          "id": 2,
+          "name": "Reskyky Qadrana",
+          "chat": "Sedang mengetik",
+          "specialis" : "Dokter Obat",
+          "rated" :4
+        },
+        {
+          "id": 3,
+          "name": "Muhammad Taufiq",
+          "chat": "Sedang mengetik",
+          "specialis" : "Dokter Anak"
+          ,
+          "rated" :5
+        },
+        {
+          "id": 4,
+          "name": "Andi Resky",
+          "chat": "Sedang mengetik",
+          "specialis" : "Dokter Umum",
+          "rated" :5
+        }
+      ]
+}

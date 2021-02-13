@@ -1,8 +1,7 @@
 import React from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {ILLBGHospital} from '../../assets';
-import {Gap} from '../../components';
+import {hospitals, ILLBGHospital} from '../../assets';
 import ListHospital from '../../components/molecules/ListHospital';
 import {colors, Fonts} from '../../utils';
 
@@ -16,18 +15,17 @@ const Hospitals = () => {
 
       <View style={styles.content}>
         <ScrollView>
-          <ListHospital />
-          <ListHospital />
-          <ListHospital />
-          <ListHospital />
-          <ListHospital />
-          <ListHospital />
-          <ListHospital />
-          <ListHospital />
-          <ListHospital />
-          <ListHospital />
-          <ListHospital />
-          <ListHospital />
+          {hospitals.data.map((item) => {
+            return (
+              <ListHospital
+                index={item.id}
+                key={item.id}
+                name={item.name}
+                title={item.title}
+                address={item.address}
+              />
+            );
+          })}
         </ScrollView>
       </View>
     </View>

@@ -1,0 +1,19 @@
+{
+    "data":[
+        {
+            "id" : 1,
+            "title" : "Is it safe to stay at home during coronavirus?",
+            "time" : "Today"
+        },
+        {
+            "id" : 2,
+            "title" : "Consume yellow citrus helps you healthier",
+            "time" : "Today"
+        },
+        {
+            "id" : 3,
+            "title" : "Learn how to make a proper orange juice at home",
+            "time" : "Tomorrow"
+        }
+    ]
+}
