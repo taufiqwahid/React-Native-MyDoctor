@@ -54,7 +54,6 @@ const Doctors = () => {
           <Gap height={16} />
           <View>
             {news.data.map((item, index) => {
-              console.log(index);
               return (
                 <NewsItem
                   title={item.title}
