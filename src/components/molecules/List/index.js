@@ -1,28 +1,45 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {IconNext} from '../../../assets';
+import {
+  IconHelp,
+  IconNext,
+  IconProfile,
+  IconStartGive,
+  IconTranslate,
+} from '../../../assets';
 
 import {colors, Fonts} from '../../../utils';
 
-const ListDoctor = ({type, image, name, chat, sex, onPress}) => {
+const List = ({type, image, icon, name, desc, onPress}) => {
+  const Icon = () => {
+    switch (icon) {
+      case 'profile':
+        return <IconProfile />;
+      case 'translate':
+        return <IconTranslate />;
+      case 'start-give':
+        return <IconStartGive />;
+      case 'help':
+        return <IconHelp />;
+
+      default:
+        return null;
+    }
+  };
   return (
     <TouchableOpacity style={styles.page} onPress={onPress}>
-      <Image style={styles.image} source={image} />
+      {icon ? <Icon /> : <Image style={styles.image} source={image} />}
       <View style={styles.doctor}>
         <Text style={styles.name}>{name}</Text>
-        {sex === 'Wanita' || sex === 'Pria' ? (
-          <Text style={styles.chat}>{sex}</Text>
-        ) : (
-          <Text style={styles.chat}>{chat}</Text>
-        )}
+        <Text style={styles.desc}>{desc}</Text>
       </View>
-      {type === 'iconNext' && <IconNext />}
+      {type === 'icon-next' && <IconNext />}
     </TouchableOpacity>
   );
 };
 
-export default ListDoctor;
+export default List;
 
 const styles = StyleSheet.create({
   page: {
@@ -43,7 +60,7 @@ const styles = StyleSheet.create({
     color: colors.text.primary,
     fontFamily: Fonts.primary[400],
   },
-  chat: {
+  desc: {
     fontSize: 12,
     fontFamily: Fonts.primary[300],
     color: colors.text.secondary,

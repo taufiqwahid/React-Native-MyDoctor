@@ -9,11 +9,14 @@ import {
   Messages,
   Register,
   Splash,
+  UpdateProfile,
   UploadPhoto,
+  DoctorProfile,
+  ChooseDoctor,
+  Chating,
+  UserProfile,
 } from '../pages';
 import {BottomNavigator} from '../components';
-import ChooseDoctor from '../pages/ChooseDoctor';
-import Chating from '../pages/Chating';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,7 +33,7 @@ const MainApp = () => {
 
 export default function Router() {
   return (
-    <Stack.Navigator initialRouteName="MainApp">
+    <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen
         name="Splash"
         component={Splash}
@@ -69,6 +72,21 @@ export default function Router() {
       <Stack.Screen
         name="Chating"
         component={Chating}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="UserProfile"
+        component={UserProfile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="UpdateProfile"
+        component={UpdateProfile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DoctorProfile"
+        component={DoctorProfile}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

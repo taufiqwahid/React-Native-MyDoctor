@@ -1,10 +1,10 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {DDokter1, DDokter2, DDokter3, IconStarRated} from '../../../assets';
 import {colors} from '../../../utils/colors';
 import {Fonts} from '../../../utils/fonts';
 
-const RatedDoctor = ({specialis, name, rated}) => {
+const RatedDoctor = ({specialis, name, rated, onPress}) => {
   const Rated = () => {
     const RatedIcon = [];
     for (let index = 0; index < rated; index++) {
@@ -33,7 +33,7 @@ const RatedDoctor = ({specialis, name, rated}) => {
   };
 
   return (
-    <View style={styles.page}>
+    <TouchableOpacity style={styles.page} onPress={onPress}>
       <Avatar />
       <View style={styles.profile}>
         <Text style={styles.name}>{name}</Text>
@@ -42,7 +42,7 @@ const RatedDoctor = ({specialis, name, rated}) => {
       <View style={styles.ratedDoctor}>
         <Rated />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

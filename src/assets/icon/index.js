@@ -12,6 +12,12 @@ import IconStarRated from './ic-start-rated.svg';
 import IconNext from './ic-arrow-next.svg';
 import IconSend from './ic-send.svg';
 import IconSendActive from './ic-send-active.svg';
+import IconHelp from './ic-desc.svg';
+import IconProfile from './ic-profile.svg';
+import IconStartGive from './ic-start-give.svg';
+import IconTranslate from './ic-translate.svg';
+import IconFemale from './ic-female.svg';
+import IconMale from './ic-male.svg';
 
 export {
   IconDoctor,
@@ -28,4 +34,10 @@ export {
   IconAddPhoto,
   IconRemove,
   IconStarRated,
+  IconTranslate,
+  IconStartGive,
+  IconProfile,
+  IconHelp,
+  IconFemale,
+  IconMale,
 };

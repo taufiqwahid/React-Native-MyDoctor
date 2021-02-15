@@ -34,7 +34,7 @@ const Chating = ({navigation}) => {
 export default Chating;
 
 const styles = StyleSheet.create({
-  page: {flex: 1, justifyContent: 'space-between'},
+  page: {flex: 1, justifyContent: 'space-between', backgroundColor: 'white'},
   content: {flex: 1},
   chatDate: {
     fontSize: 11,

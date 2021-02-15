@@ -4,7 +4,7 @@ import {Button, Gap, Header, Input} from '../../components';
 
 const Register = ({navigation}) => {
   return (
-    <View>
+    <View style={styles.page}>
       <Header title="Daftar Akun" onPress={() => navigation.goBack()} />
       <View style={styles.form}>
         <Gap height={40} />
@@ -28,6 +28,7 @@ const Register = ({navigation}) => {
 export default Register;
 
 const styles = StyleSheet.create({
+  page: {flex: 1, backgroundColor: 'white'},
   form: {
     paddingBottom: 40,
     paddingHorizontal: 40,

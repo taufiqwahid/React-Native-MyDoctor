@@ -2,10 +2,10 @@ import React from 'react';
 import {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {DDokter1, DDokter2, DDokter3} from '../../assets';
-import {ListDoctor} from '../../components';
+import {List} from '../../components';
 import {colors, Fonts} from '../../utils';
 
-const Messages = () => {
+const Messages = ({navigation}) => {
   const [data, setData] = useState([
     {
       id: 1,
@@ -32,11 +32,12 @@ const Messages = () => {
         <Text style={styles.title}>Messages</Text>
         {data.map((doctors) => {
           return (
-            <ListDoctor
+            <List
+              onPress={() => navigation.navigate('Chating')}
               key={doctors.id}
               image={doctors.image}
               name={doctors.name}
-              chat={doctors.chat}
+              desc={doctors.chat}
             />
           );
         })}

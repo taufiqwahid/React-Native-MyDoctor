@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {DDokter1} from '../../assets';
 import Header from '../../components/molecules/Header';
-import ListDoctor from '../../components/molecules/ListDoctor';
+import List from '../../components/molecules/List';
 
 const ChooseDoctor = ({navigation}) => {
   return (
@@ -13,11 +13,11 @@ const ChooseDoctor = ({navigation}) => {
         type="dark"
         onPress={() => navigation.goBack()}
       />
-      <ListDoctor
+      <List
         name="taufiq"
-        sex="Wanita"
+        desc="Wanita"
         image={DDokter1}
-        type="iconNext"
+        type="icon-next"
         onPress={() => navigation.navigate('Chating')}
       />
     </ScrollView>

@@ -1,13 +1,13 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {IconAddPhoto, ILNullPhoto} from '../../assets';
-import {Button, Gap, Header, Link} from '../../components';
+import {Button, Gap, Header, Link, Profile} from '../../components';
 import {colors, Fonts} from '../../utils';
 
-const UploadPhoto = () => {
+const UploadPhoto = ({navigation}) => {
   return (
     <View style={styles.page}>
-      <Header title="Upload Photo" />
+      <Header title="Upload Photo" onPress={() => navigation.goBack()} />
       <View style={styles.container}>
         <View style={styles.content}>
           <View style={styles.wrapperAvatar}>
@@ -19,9 +19,18 @@ const UploadPhoto = () => {
           <Text style={styles.job}>Product Designer</Text>
         </View>
         <View style={styles.button}>
-          <Button title="Upload and Continue" type="secondary" />
+          <Button
+            onPress={() => navigation.replace('MainApp')}
+            title="Upload and Continue"
+            type="secondary"
+          />
           <Gap height={30} />
-          <Link size={16} text="Skip for this" textAlign="center" />
+          <Link
+            onPress={() => navigation.replace('MainApp')}
+            size={16}
+            text="Skip for this"
+            textAlign="center"
+          />
         </View>
       </View>
     </View>

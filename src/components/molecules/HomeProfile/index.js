@@ -1,17 +1,17 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {DUser} from '../../../assets';
 import {colors, Fonts} from '../../../utils';
 
-const HomeProfile = () => {
+const HomeProfile = ({onPress}) => {
   return (
-    <View style={styles.page}>
+    <TouchableOpacity onPress={onPress} style={styles.page}>
       <Image source={DUser} style={styles.avatar} />
       <View>
         <Text style={styles.name}>Shayna Melinda</Text>
-        <Text style={styles.profetion}>Product Designer</Text>
+        <Text style={styles.profession}>Product Designer</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     color: colors.text.primary,
     fontSize: 16,
   },
-  profetion: {
+  profession: {
     fontFamily: Fonts.primary[600],
     color: colors.text.secondary,
     fontSize: 12,
