@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 20,
   },
   title: {
-    fontFamily: Fonts.primary[600],
+    fontFamily: Fonts.primary[700],
     fontSize: 20,
     marginTop: 30,
     marginLeft: 16,

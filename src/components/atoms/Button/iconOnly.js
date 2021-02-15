@@ -1,17 +1,17 @@
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {IconBackDark} from '../../../assets';
+import {IconBackDark, IconBackLight} from '../../../assets';
 
 const IconOnly = ({onPress, icon}) => {
   const Icon = () => {
     if (icon === 'back-dark') {
-      return <IconBackDark />;
+      return <IconBackDark style={styles.icon} />;
     }
     if (icon === 'back-light') {
-      return <IconBackDark />;
+      return <IconBackLight style={styles.icon} />;
     }
-    return <IconBackDark />;
+    return <IconBackDark style={styles.icon} />;
   };
   return (
     <TouchableOpacity onPress={onPress}>
@@ -22,4 +22,4 @@ const IconOnly = ({onPress, icon}) => {
 
 export default IconOnly;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({icon: {marginLeft: 16}});

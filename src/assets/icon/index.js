@@ -4,10 +4,14 @@ import IconMessages from './ic-textsms.svg';
 import IconMessagesActive from './ic-textsms_active.svg';
 import IconHospitals from './ic-map.svg';
 import IconHospitalsActive from './ic-map_active.svg';
-import IconBackDark from './arrow_back.svg';
+import IconBackDark from './ic-back-dark.svg';
+import IconBackLight from './ic-back-light.svg';
 import IconAddPhoto from './AddPhoto.svg';
 import IconRemove from './RemovePhoto.svg';
 import IconStarRated from './ic-start-rated.svg';
+import IconNext from './ic-arrow-next.svg';
+import IconSend from './ic-send.svg';
+import IconSendActive from './ic-send-active.svg';
 
 export {
   IconDoctor,
@@ -17,6 +21,10 @@ export {
   IconMessages,
   IconMessagesActive,
   IconBackDark,
+  IconBackLight,
+  IconNext,
+  IconSend,
+  IconSendActive,
   IconAddPhoto,
   IconRemove,
   IconStarRated,

@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {
   ILLDokterAnak,
   ILLDokterObat,
@@ -9,7 +10,7 @@ import {
 } from '../../../assets';
 import {colors, Fonts} from '../../../utils';
 
-const DoctorCategory = ({category}) => {
+const DoctorCategory = ({category, onPress}) => {
   const Icon = () => {
     if (category === 'dokter anak') {
       return <ILLDokterAnak style={styles.image} />;
@@ -25,13 +26,13 @@ const DoctorCategory = ({category}) => {
     }
   };
   return (
-    <View style={styles.page}>
+    <TouchableOpacity style={styles.page} onPress={onPress}>
       <Icon />
       <View style={styles.text}>
         <Text style={styles.textButuh}>Saya butuh</Text>
         <Text style={styles.textDokter}>{category}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

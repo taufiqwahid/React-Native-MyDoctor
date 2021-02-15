@@ -12,6 +12,8 @@ import {
   UploadPhoto,
 } from '../pages';
 import {BottomNavigator} from '../components';
+import ChooseDoctor from '../pages/ChooseDoctor';
+import Chating from '../pages/Chating';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -57,6 +59,16 @@ export default function Router() {
       <Stack.Screen
         name="MainApp"
         component={MainApp}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ChooseDoctor"
+        component={ChooseDoctor}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Chating"
+        component={Chating}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
