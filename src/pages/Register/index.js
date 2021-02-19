@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {Alert, ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Gap, Header, Input} from '../../components';
-import {useForm} from '../../utils';
+import {colors, useForm} from '../../utils';
 import {Firebase} from '../../config';
 import Loading from '../../components/molecules/Loading';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 
 const Register = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -14,7 +15,6 @@ const Register = ({navigation}) => {
   });
 
   const [loading, setLoading] = useState(false);
-  useState;
 
   const onContinue = () => {
     setLoading(true);
@@ -23,14 +23,21 @@ const Register = ({navigation}) => {
       .createUserWithEmailAndPassword(form.email, form.password)
       .then((success) => {
         setLoading(false);
-        console.info(success);
+        // Alert.alert(success);
+        setForm('reset');
+        console.log('success = ', success);
       })
       .catch((error) => {
         setLoading(false);
         var errorCode = error.code;
         var errorMessage = error.message;
+        showMessage({
+          message: errorMessage,
+          type: 'default',
+          color: 'white',
+          backgroundColor: colors.message.danger,
+        });
         console.warn('errorCode = ', errorCode);
-        console.error('errorMessage = ', errorMessage);
       });
   };
 
