@@ -1,13 +1,28 @@
 import React from 'react';
+import {useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {Fonts} from '../../../utils';
 import {colors} from '../../../utils/colors';
 
-const Input = ({label}) => {
+const Input = ({label, value, onChangeText, secureTextEntry}) => {
+  const [border, setBorder] = useState(colors.input.secondary);
+  const onFocus = () => {
+    setBorder(colors.input.primary);
+  };
+  const onBlur = () => {
+    setBorder(colors.input.secondary);
+  };
   return (
     <View style={styles.page}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput style={styles.input} />
+      <TextInput
+        style={styles.input(border)}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        value={value}
+        onChangeText={onChangeText}
+        secureTextEntry={secureTextEntry}
+      />
     </View>
   );
 };
@@ -21,14 +36,14 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
   },
 
-  input: {
+  input: (border) => ({
     fontFamily: Fonts.primary.normal,
     fontSize: 16,
     color: colors.input.text.primary,
     marginTop: 6,
     borderWidth: 1,
     padding: 11,
-    borderColor: colors.input.secondary,
+    borderColor: border,
     borderRadius: 10,
-  },
+  }),
 });

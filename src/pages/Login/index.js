@@ -26,7 +26,7 @@ const Login = ({navigation}) => {
       </View>
       <Gap height={30} />
       <Link
-        onPress={() => navigation.navigate('Register')}
+        onPress={() => navigation.replace('Register')}
         size={16}
         text="Create New Account"
         textAlign="center"

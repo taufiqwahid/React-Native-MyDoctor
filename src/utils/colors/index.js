@@ -11,6 +11,8 @@ export const mainColors = {
   dark2: '#112340',
   dark1: '#495a75',
   blue1: '#0066CB',
+  black1: '#000000',
+  black2: 'rgba(0, 0, 0, 0.5)',
 };
 
 export const colors = {
@@ -44,6 +46,7 @@ export const colors = {
   input: {
     secondary: mainColors.secondary2,
     danger: mainColors.danger1,
+    primary: mainColors.blue1,
     text: {
       primary: mainColors.dark2,
       danger: mainColors.danger1,
@@ -52,5 +55,10 @@ export const colors = {
   border: {
     secondary: mainColors.secondary2,
     danger: mainColors.danger1,
+  },
+  loading: {
+    text: mainColors.primary2,
+    animation: mainColors.primary2,
+    background: mainColors.black2,
   },
 };
