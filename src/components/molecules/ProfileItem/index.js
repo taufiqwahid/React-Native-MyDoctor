@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {colors, Fonts} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 
 const ProfileItem = ({desc, name}) => {
   return (
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
     fontSize: 14,
     marginLeft: 16,
-    fontFamily: Fonts.primary[400],
+    fontFamily: fonts.primary[400],
   },
   name: {
     marginTop: 6,
@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
     color: colors.text.primary,
     fontSize: 14,
     marginLeft: 16,
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
   },
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {colors, Fonts} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 
 const IsMe = () => {
   return (
@@ -38,12 +38,12 @@ const styles = StyleSheet.create({
   text: {
     color: colors.text.primary,
     fontSize: 14,
-    fontFamily: Fonts.primary[400],
+    fontFamily: fonts.primary[400],
   },
   time: {
     marginTop: 8,
     fontSize: 11,
-    fontFamily: Fonts.primary[400],
+    fontFamily: fonts.primary[400],
     alignSelf: 'flex-end',
   },
 });

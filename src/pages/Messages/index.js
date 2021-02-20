@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {DDokter1, DDokter2, DDokter3} from '../../assets';
 import {List} from '../../components';
-import {colors, Fonts} from '../../utils';
+import {colors, fonts} from '../../utils';
 
 const Messages = ({navigation}) => {
   const [data, setData] = useState([
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 20,
   },
   title: {
-    fontFamily: Fonts.primary[700],
+    fontFamily: fonts.primary[700],
     fontSize: 20,
     marginTop: 30,
     marginLeft: 16,

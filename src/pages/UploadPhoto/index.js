@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {IconAddPhoto, IconRemove, ILNullPhoto} from '../../assets';
 import {Button, Gap, Header, Link} from '../../components';
-import {colors, Fonts} from '../../utils';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {colors, fonts} from '../../utils';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {alertMessage} from '../../utils/AlertMessage';
 
 const UploadPhoto = ({navigation}) => {
@@ -104,12 +104,12 @@ const styles = StyleSheet.create({
   },
   name: {
     color: colors.text.primary,
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
     fontSize: 24,
   },
   job: {
     marginTop: 4,
-    fontFamily: Fonts.primary.normal,
+    fontFamily: fonts.primary.normal,
     fontSize: 18,
     color: colors.text.secondary,
   },

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {DDokter1} from '../../../assets';
-import {colors, Fonts} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 import Button from '../../atoms/Button';
 
 const DarkProfile = ({name, specialis, onPress, type}) => {
@@ -32,14 +32,14 @@ const styles = StyleSheet.create({
   }),
   name: (type) => ({
     fontSize: 20,
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
     color: 'white',
     marginLeft: 16,
     textAlign: 'center',
   }),
   specialis: (type) => ({
     fontSize: 14,
-    fontFamily: Fonts.primary[400],
+    fontFamily: fonts.primary[400],
     color: colors.text.secondary,
     marginLeft: 16,
     marginTop: 6,

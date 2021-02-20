@@ -3,7 +3,7 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import ChatItem from '../../components/molecules/ChatItem';
 import Header from '../../components/molecules/Header';
 import InputChat from '../../components/molecules/InputChat';
-import {colors, Fonts} from '../../utils';
+import {colors, fonts} from '../../utils';
 
 const Chating = ({navigation}) => {
   return (
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   content: {flex: 1},
   chatDate: {
     fontSize: 11,
-    fontFamily: Fonts.primary[400],
+    fontFamily: fonts.primary[400],
     color: colors.text.secondary,
     textAlign: 'center',
     marginTop: 20,

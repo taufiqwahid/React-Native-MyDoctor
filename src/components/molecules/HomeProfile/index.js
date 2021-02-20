@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {DUser} from '../../../assets';
-import {colors, Fonts} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 
 const HomeProfile = ({onPress}) => {
   return (
@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   name: {
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
     color: colors.text.primary,
     fontSize: 16,
   },
   profession: {
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
     color: colors.text.secondary,
     fontSize: 12,
   },

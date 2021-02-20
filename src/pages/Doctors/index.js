@@ -8,7 +8,7 @@ import {
   NewsItem,
   RatedDoctor,
 } from '../../components';
-import {colors, Fonts} from '../../utils';
+import {colors, fonts} from '../../utils';
 
 const Doctors = ({navigation}) => {
   return (
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     marginHorizontal: -16,
   },
   textKonsultasi: {
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
     color: colors.text.primary,
     fontSize: 20,
     width: 209,

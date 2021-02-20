@@ -2,7 +2,7 @@ import React from 'react';
 import {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ILLogo} from '../../assets';
-import {Fonts} from '../../utils';
+import {fonts} from '../../utils';
 import {colors} from '../../utils/colors';
 
 const Splash = ({navigation}) => {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
     marginTop: 20,
     fontSize: 20,
     color: colors.text.primary,

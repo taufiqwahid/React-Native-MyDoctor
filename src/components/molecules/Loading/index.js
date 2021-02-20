@@ -1,6 +1,6 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
-import {colors, Fonts} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 
 const Loading = () => {
   return (
@@ -26,6 +26,6 @@ const styles = StyleSheet.create({
   text: {
     color: colors.loading.text,
     fontSize: 15,
-    fontFamily: Fonts.primary[400],
+    fontFamily: fonts.primary[400],
   },
 });

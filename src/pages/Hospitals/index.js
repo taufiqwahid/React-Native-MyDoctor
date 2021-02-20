@@ -3,7 +3,7 @@ import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {hospitals, ILLBGHospital} from '../../assets';
 import ListHospital from '../../components/molecules/ListHospital';
-import {colors, Fonts} from '../../utils';
+import {colors, fonts} from '../../utils';
 
 const Hospitals = () => {
   return (
@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
   textTitle: {
     color: 'white',
     fontSize: 20,
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
   },
   textStock: {
     color: 'white',
     fontSize: 14,
 
-    fontFamily: Fonts.primary[300],
+    fontFamily: fonts.primary[300],
   },
   content: {
     marginTop: -20,

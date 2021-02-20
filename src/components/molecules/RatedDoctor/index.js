@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {DDokter1, DDokter2, DDokter3, IconStarRated} from '../../../assets';
 import {colors} from '../../../utils/colors';
-import {Fonts} from '../../../utils/fonts';
+import {fonts} from '../../../utils/fonts';
 
 const RatedDoctor = ({specialis, name, rated, onPress}) => {
   const Rated = () => {
@@ -67,11 +67,11 @@ const styles = StyleSheet.create({
     color: colors.text.primary,
     fontSize: 16,
     marginBottom: 2,
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
   },
   specialis: {
     color: colors.text.secondary,
-    fontFamily: Fonts.primary[400],
+    fontFamily: fonts.primary[400],
     fontSize: 12,
   },
   ratedDoctor: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Fonts} from '../../../utils';
+import {fonts} from '../../../utils';
 
 import {colors} from '../../../utils/colors';
 import Button from '../../atoms/Button';
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   title: (type) => ({
     marginRight: 40,
     fontSize: 20,
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
     color: type === 'dark' ? 'white' : colors.text.primary,
     flex: 1,
     textAlign: 'center',

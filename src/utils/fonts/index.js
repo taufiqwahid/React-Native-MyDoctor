@@ -1,4 +1,4 @@
-const Fonts = {
+const fonts = {
   primary: {
     200: 'Nunito-ExtraLight',
     300: 'Nunito-Light',
@@ -11,4 +11,4 @@ const Fonts = {
   },
 };
 
-export {Fonts};
+export {fonts};

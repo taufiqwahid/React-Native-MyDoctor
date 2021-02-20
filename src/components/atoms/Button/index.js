@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Fonts} from '../../../utils';
+import {fonts} from '../../../utils';
 import {colors} from '../../../utils/colors';
 import IconBtn from './iconBtn';
 import IconOnly from './iconOnly';
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 
   title: (disable) => ({
     color: disable ? colors.button.secondary.text : colors.button.primary.text,
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
     fontSize: 18,
     textAlign: 'center',
   }),

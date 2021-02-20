@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {DUser, IconFemale, IconMale, IconRemove} from '../../../assets';
-import {colors, Fonts} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 
 const Profile = ({name, desc, type}) => {
   const Icon = () => {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 20,
     color: colors.text.primary,
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
     marginTop: 16,
     textAlign: 'center',
   },
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     color: colors.text.secondary,
-    fontFamily: Fonts.primary[400],
+    fontFamily: fonts.primary[400],
     marginTop: 2,
     marginBottom: 16,
   },

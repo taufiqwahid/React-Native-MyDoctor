@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {DNews1, DNews2, DNews3} from '../../../assets';
-import {colors, Fonts} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 
 const NewsItem = ({title, time, index}) => {
   const Picture = () => {
@@ -40,12 +40,12 @@ const styles = StyleSheet.create({
   title: {
     width: 177,
     marginBottom: 4,
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
     fontSize: 16,
   },
   time: {
     fontSize: 12,
-    fontFamily: Fonts.primary[400],
+    fontFamily: fonts.primary[400],
     marginBottom: 12,
   },
   picture: {

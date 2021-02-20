@@ -8,7 +8,7 @@ import {
   IconMessages,
   IconMessagesActive,
 } from '../../../assets/icon';
-import {colors, Fonts} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 
 const TabItem = ({label, active, onPress, onLongPress, isFocused, options}) => {
   const Icon = () => {
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   label: (active) => ({
     color: active ? colors.text.menuActive : colors.text.menuInActive,
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
     marginTop: 4,
   }),
 });

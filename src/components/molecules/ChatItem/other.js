@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {DDokter1} from '../../../assets';
-import {colors, Fonts} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 
 const Other = () => {
   return (
@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 14,
-    fontFamily: Fonts.primary[400],
+    fontFamily: fonts.primary[400],
     alignSelf: 'flex-end',
   },
   time: {
     marginTop: 8,
     fontSize: 11,
-    fontFamily: Fonts.primary[400],
+    fontFamily: fonts.primary[400],
     alignSelf: 'flex-start',
   },
 });

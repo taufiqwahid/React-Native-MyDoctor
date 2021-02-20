@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {DHospital1, DHospital2, DHospital3} from '../../../assets';
-import {colors, Fonts} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 
 const ListHospital = ({index, title, address, name}) => {
   const Picture = () => {
@@ -47,11 +47,11 @@ const styles = StyleSheet.create({
   title: {
     color: colors.text.primary,
     fontSize: 16,
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
   },
   address: {
     color: colors.text.secondary,
     fontSize: 12,
-    fontFamily: Fonts.primary[300],
+    fontFamily: fonts.primary[300],
   },
 });

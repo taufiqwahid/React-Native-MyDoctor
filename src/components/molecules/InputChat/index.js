@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
-import {colors, Fonts} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 import Button from '../../atoms/Button';
 
 const InputChat = () => {
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     height: 45,
     padding: 14,
     fontSize: 14,
-    fontFamily: Fonts.primary[400],
+    fontFamily: fonts.primary[400],
     borderRadius: 10,
     marginRight: 10,
   },

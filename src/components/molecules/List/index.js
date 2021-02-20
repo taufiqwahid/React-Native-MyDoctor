@@ -9,7 +9,7 @@ import {
   IconTranslate,
 } from '../../../assets';
 
-import {colors, Fonts} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 
 const List = ({type, image, icon, name, desc, onPress}) => {
   const Icon = () => {
@@ -58,11 +58,11 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 16,
     color: colors.text.primary,
-    fontFamily: Fonts.primary[400],
+    fontFamily: fonts.primary[400],
   },
   desc: {
     fontSize: 12,
-    fontFamily: Fonts.primary[300],
+    fontFamily: fonts.primary[300],
     color: colors.text.secondary,
   },
 });

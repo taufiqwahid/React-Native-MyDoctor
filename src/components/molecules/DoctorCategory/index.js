@@ -8,7 +8,7 @@ import {
   ILLDokterPsikiater,
   ILLDokterUmum,
 } from '../../../assets';
-import {colors, Fonts} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 
 const DoctorCategory = ({category, onPress}) => {
   const Icon = () => {
@@ -60,12 +60,12 @@ const styles = StyleSheet.create({
   },
   textButuh: {
     color: colors.text.primary,
-    fontFamily: Fonts.primary[300],
+    fontFamily: fonts.primary[300],
     fontSize: 12,
   },
   textDokter: {
     color: colors.text.primary,
-    fontFamily: Fonts.primary[600],
+    fontFamily: fonts.primary[600],
     fontSize: 12,
   },
 });
