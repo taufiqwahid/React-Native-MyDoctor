@@ -8,7 +8,7 @@ const InputChat = () => {
   return (
     <View style={styles.page}>
       <TextInput style={styles.input} placeholder="taufiqwahid" />
-      <Button type="icon-btn" disable={true} />
+      <Button type="icon-btn" active={true} />
     </View>
   );
 };

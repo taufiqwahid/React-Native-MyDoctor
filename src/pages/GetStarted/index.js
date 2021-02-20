@@ -20,7 +20,7 @@ const GetStarted = ({navigation}) => {
         />
         <Gap height={16} />
         <Button
-          type="secondary"
+          disable={true}
           title="Sign In"
           onPress={() => navigation.navigate('Login')}
         />

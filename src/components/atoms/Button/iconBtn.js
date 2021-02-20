@@ -3,11 +3,11 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import {IconSend, IconSendActive} from '../../../assets/icon';
 import {colors} from '../../../utils';
 
-const IconBtn = ({disable}) => {
+const IconBtn = ({active}) => {
   return (
-    <TouchableOpacity style={styles.page(disable)}>
-      {disable && <IconSend />}
-      {!disable && <IconSendActive />}
+    <TouchableOpacity style={styles.page(active)}>
+      {active && <IconSend />}
+      {!active && <IconSendActive />}
     </TouchableOpacity>
   );
 };
@@ -15,11 +15,11 @@ const IconBtn = ({disable}) => {
 export default IconBtn;
 
 const styles = StyleSheet.create({
-  page: (disable) => ({
+  page: (active) => ({
     width: 45,
     height: 45,
     backgroundColor:
-      disable === true
+      active === false
         ? colors.button.secondary.background
         : colors.button.blue.background,
     justifyContent: 'center',

@@ -61,5 +61,9 @@ export const colors = {
     animation: mainColors.primary2,
     background: mainColors.black2,
   },
-  message: {danger: mainColors.danger1},
+  message: {
+    danger: mainColors.danger1,
+    success: mainColors.primary2,
+    info: mainColors.primary3,
+  },
 };

@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {Alert, ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Gap, Header, Input} from '../../components';
 import {colors, useForm} from '../../utils';
 import {Firebase} from '../../config';
 import Loading from '../../components/molecules/Loading';
 import {showMessage, hideMessage} from 'react-native-flash-message';
+import {alertMessage} from '../../utils/AlertMessage';
 
 const Register = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -19,13 +20,34 @@ const Register = ({navigation}) => {
   const onContinue = () => {
     setLoading(true);
     console.log(form);
+    const data = {
+      fullName: form.fullName,
+      profession: form.profession,
+      email: form.email,
+    };
+
     Firebase.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then((success) => {
         setLoading(false);
-        // Alert.alert(success);
+
+        Firebase.database()
+          .ref('users' + success.user.uid)
+          .set(data, (error) => {
+            if (error) {
+              alertMessage({message: error, type: 'danger', icon: 'danger'});
+            } else {
+              alertMessage({
+                message: 'Success Register',
+                type: 'default',
+                icon: 'success',
+              });
+              setTimeout(() => {
+                navigation.replace('UploadPhoto');
+              }, 2000);
+            }
+          });
         setForm('reset');
-        console.log('success = ', success);
       })
       .catch((error) => {
         setLoading(false);
@@ -33,11 +55,12 @@ const Register = ({navigation}) => {
         var errorMessage = error.message;
         showMessage({
           message: errorMessage,
-          type: 'default',
+          type: 'danger',
+          icon: 'danger',
           color: 'white',
           backgroundColor: colors.message.danger,
         });
-        console.warn('errorCode = ', errorCode);
+        console.log('errorCode = ', errorCode);
       });
   };
 
