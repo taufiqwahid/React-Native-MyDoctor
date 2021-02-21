@@ -1,9 +1,9 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {DUser, IconFemale, IconMale, IconRemove} from '../../../assets';
+import {IconFemale, IconMale, IconRemove} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const Profile = ({name, desc, type}) => {
+const Profile = ({name, desc, photo, type}) => {
   const Icon = () => {
     switch (type) {
       case 'icon-remove':
@@ -20,7 +20,7 @@ const Profile = ({name, desc, type}) => {
   return (
     <View style={styles.page}>
       <View style={styles.borderAvatar}>
-        <Image source={DUser} style={styles.avatar} />
+        <Image source={{uri: photo}} style={styles.avatar} />
       </View>
       {type && <Icon />}
       {name && (

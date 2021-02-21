@@ -7,10 +7,10 @@ import {colors, fonts} from '../../../utils';
 import {getData} from '../../../utils/localStorage';
 
 const HomeProfile = ({onPress}) => {
-  const [profile, setProfile] = useState();
+  const [profile, setProfile] = useState({});
   useEffect(() => {
-    getData('user').then((response) => {
-      setProfile(response);
+    getData('user').then((data) => {
+      setProfile(data);
     });
   }, []);
   return (

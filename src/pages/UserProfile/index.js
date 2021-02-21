@@ -6,10 +6,20 @@ import {Header, List, Profile} from '../../components';
 import {getData} from '../../utils/localStorage';
 
 const UserProfile = ({navigation}) => {
+  const [profile, setProfile] = useState({});
+  useEffect(() => {
+    getData('user').then((data) => {
+      setProfile(data);
+    });
+  }, []);
   return (
     <View style={styles.page}>
       <Header title="Profile" onPress={() => navigation.goBack()} />
-      <Profile name="asdasdas" desc="asdasd" />
+      <Profile
+        name={profile.fullName}
+        desc={profile.profession}
+        photo={profile.photo}
+      />
       <List
         name="Edit Profile"
         icon="profile"

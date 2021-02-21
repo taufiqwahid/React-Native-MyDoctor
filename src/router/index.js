@@ -33,7 +33,7 @@ const MainApp = () => {
 
 export default function Router() {
   return (
-    <Stack.Navigator initialRouteName="Register">
+    <Stack.Navigator initialRouteName="getstarted">
       <Stack.Screen
         name="Splash"
         component={Splash}

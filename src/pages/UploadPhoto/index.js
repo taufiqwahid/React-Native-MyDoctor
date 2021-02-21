@@ -45,7 +45,7 @@ const UploadPhoto = ({navigation, route}) => {
   const saveAndContinue = () => {
     data.photo = photoForDB;
     storeData('user', data);
-    Firebase.database().ref(`users${uid}`).update({
+    Firebase.database().ref(`users/${uid}/`).update({
       photo: photoForDB,
     });
     navigation.replace('MainApp');

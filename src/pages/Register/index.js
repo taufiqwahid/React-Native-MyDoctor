@@ -29,10 +29,10 @@ const Register = ({navigation}) => {
 
     Firebase.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
-      .then((success) => {
-        data.uid = success.user.uid;
+      .then((response) => {
+        data.uid = response.user.uid;
         Firebase.database()
-          .ref(`users${success.user.uid}`)
+          .ref(`users/${response.user.uid}/`)
           .set(data, (error) => {
             if (error) {
               alertMessage({message: error, type: 'danger', icon: 'danger'});
