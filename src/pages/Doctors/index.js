@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState, useEffect} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {categoryDoctors, doctors, news} from '../../assets';
 import {

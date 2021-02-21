@@ -5,20 +5,26 @@ import {Button, Gap, Header, Link} from '../../components';
 import {colors, fonts} from '../../utils';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {alertMessage} from '../../utils/AlertMessage';
+import {Firebase} from '../../config';
+import {storeData} from '../../utils/localStorage';
 
-const UploadPhoto = ({navigation}) => {
+const UploadPhoto = ({navigation, route}) => {
+  const {fullName, profession, uid} = route.params;
   const [hasPhoto, setHasPhoto] = useState(false);
   const [photo, setPhoto] = useState(ILNullPhoto);
+  const [photoForDB, setPhotoForDB] = useState();
+  const data = route.params;
   const getPhoto = () => {
     launchImageLibrary(
-      {mediaType: 'photo', quality: 1, saveToPhotos: true},
+      {
+        mediaType: 'photo',
+        includeBase64: true,
+        maxHeight: 200,
+        maxWidth: 200,
+        quality: 0.5,
+      },
       (response) => {
-        if (!response.didCancel) {
-          const source = {uri: response.uri};
-          setPhoto(source);
-          console.log(response);
-          setHasPhoto(true);
-        } else {
+        if (response.didCancel) {
           alertMessage({
             message: 'Photo is default',
             type: 'info',
@@ -26,10 +32,25 @@ const UploadPhoto = ({navigation}) => {
           });
           setPhoto(ILNullPhoto);
           setHasPhoto(false);
+        } else {
+          setPhotoForDB(`data:${response.type};base64, ${response.base64}`);
+          const source = {uri: response.uri};
+          setPhoto(source);
+          setHasPhoto(true);
         }
       },
     );
   };
+
+  const saveAndContinue = () => {
+    data.photo = photoForDB;
+    storeData('user', data);
+    Firebase.database().ref(`users${uid}`).update({
+      photo: photoForDB,
+    });
+    navigation.replace('MainApp');
+  };
+
   return (
     <View style={styles.page}>
       <Header title="Upload Photo" onPress={() => navigation.goBack()} />
@@ -43,12 +64,12 @@ const UploadPhoto = ({navigation}) => {
             {!hasPhoto && <IconAddPhoto style={styles.addPhoto} />}
           </TouchableOpacity>
           <Gap height={26} />
-          <Text style={styles.name}>Shayna Melinda</Text>
-          <Text style={styles.job}>Product Designer</Text>
+          <Text style={styles.name}>{fullName}</Text>
+          <Text style={styles.job}>{profession}</Text>
         </View>
         <View style={styles.button}>
           <Button
-            onPress={() => navigation.replace('MainApp')}
+            onPress={() => saveAndContinue()}
             title="Upload and Continue"
             disable={!hasPhoto}
           />
@@ -106,12 +127,14 @@ const styles = StyleSheet.create({
     color: colors.text.primary,
     fontFamily: fonts.primary[600],
     fontSize: 24,
+    textTransform: 'capitalize',
   },
   job: {
     marginTop: 4,
     fontFamily: fonts.primary.normal,
     fontSize: 18,
     color: colors.text.secondary,
+    textTransform: 'capitalize',
   },
   button: {
     marginHorizontal: 40,

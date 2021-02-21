@@ -4,8 +4,9 @@ import {Button, Gap, Header, Input} from '../../components';
 import {colors, useForm} from '../../utils';
 import {Firebase} from '../../config';
 import Loading from '../../components/molecules/Loading';
-import {showMessage, hideMessage} from 'react-native-flash-message';
+import {showMessage} from 'react-native-flash-message';
 import {alertMessage} from '../../utils/AlertMessage';
+import {storeData} from '../../utils/localStorage';
 
 const Register = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -19,7 +20,7 @@ const Register = ({navigation}) => {
 
   const onContinue = () => {
     setLoading(true);
-    console.log(form);
+    console.log('FORM = ', form);
     const data = {
       fullName: form.fullName,
       profession: form.profession,
@@ -29,25 +30,23 @@ const Register = ({navigation}) => {
     Firebase.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then((success) => {
-        setLoading(false);
-
+        data.uid = success.user.uid;
         Firebase.database()
-          .ref('users' + success.user.uid)
+          .ref(`users${success.user.uid}`)
           .set(data, (error) => {
             if (error) {
               alertMessage({message: error, type: 'danger', icon: 'danger'});
             } else {
               alertMessage({
                 message: 'Success Register',
-                type: 'default',
+                type: 'success',
                 icon: 'success',
               });
-              setTimeout(() => {
-                navigation.replace('UploadPhoto');
-              }, 2000);
+              setLoading(false);
+              navigation.replace('UploadPhoto', data);
+              setForm('reset');
             }
           });
-        setForm('reset');
       })
       .catch((error) => {
         setLoading(false);
@@ -58,7 +57,6 @@ const Register = ({navigation}) => {
           type: 'danger',
           icon: 'danger',
           color: 'white',
-          backgroundColor: colors.message.danger,
         });
         console.log('errorCode = ', errorCode);
       });
