@@ -5,18 +5,23 @@ import {ILLogo} from '../../assets';
 import {Firebase} from '../../config';
 import {fonts} from '../../utils';
 import {colors} from '../../utils/colors';
+import {storeData} from '../../utils/localStorage';
 
 const Splash = ({navigation}) => {
   useEffect(() => {
-    setTimeout(() => {
-      Firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          navigation.replace('MainApp');
-        } else {
-          navigation.replace('GetStarted');
-        }
-      });
-    }, 1000);
+    Firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        Firebase.database()
+          .ref(`/users/${user.uid}`)
+          .once('value')
+          .then((data) => {
+            storeData('user', data.val());
+            navigation.replace('MainApp');
+          });
+      } else {
+        navigation.replace('GetStarted');
+      }
+    });
   }, [navigation]);
 
   return (

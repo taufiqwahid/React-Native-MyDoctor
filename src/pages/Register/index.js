@@ -20,7 +20,6 @@ const Register = ({navigation}) => {
 
   const onContinue = () => {
     setLoading(true);
-    console.log('FORM = ', form);
     const data = {
       fullName: form.fullName,
       profession: form.profession,

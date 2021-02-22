@@ -12,20 +12,21 @@ const UserProfile = ({navigation}) => {
       setProfile(data);
     });
   }, []);
+  const photo = {uri: profile.photo};
   return (
     <View style={styles.page}>
-      <Header title="Profile" onPress={() => navigation.goBack()} />
+      <Header title="Profile" onPress={() => navigation.replace('MainApp')} />
       <Profile
         name={profile.fullName}
         desc={profile.profession}
-        photo={profile.photo}
+        photo={photo}
       />
       <List
         name="Edit Profile"
         icon="profile"
         desc="Last updated yesterday"
         type="icon-next"
-        onPress={() => navigation.navigate('UpdateProfile')}
+        onPress={() => navigation.replace('UpdateProfile')}
       />
       <List
         name="Language"
@@ -35,14 +36,14 @@ const UserProfile = ({navigation}) => {
         onPress={() => alert('ALERTTT')}
       />
       <List
-        name="Edit Profile"
+        name="Give Us Rate"
         icon="start-give"
         desc="On Google Play Store"
         type="icon-next"
         onPress={() => alert('ALERTTT')}
       />
       <List
-        name="Edit Profile"
+        name="Help Center"
         icon="help"
         desc="Read our guidelines"
         type="icon-next"

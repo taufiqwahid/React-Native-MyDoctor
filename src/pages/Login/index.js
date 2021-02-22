@@ -22,16 +22,20 @@ const Login = ({navigation}) => {
     Firebase.auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then((response) => {
-        setLoading(false);
-        setForm('reset');
         Firebase.database()
-          .ref(`users/${response.user.uid}`)
+          .ref(`/users/${response.user.uid}/`)
           .once('value')
           .then((data) => {
             if (data) {
-              // storeData('user', data);
-              console.log('DATA', data);
-              // navigation.replace('MainApp');
+              setLoading(false);
+              storeData('user', data.val());
+              alertMessage({
+                message: 'Login Success',
+                type: 'success',
+                icon: 'success',
+              });
+              setForm('reset');
+              navigation.replace('MainApp');
             }
           });
       })

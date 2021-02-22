@@ -21,7 +21,7 @@ const UploadPhoto = ({navigation, route}) => {
         includeBase64: true,
         maxHeight: 200,
         maxWidth: 200,
-        quality: 0.5,
+        quality: 0.8,
       },
       (response) => {
         if (response.didCancel) {
@@ -44,10 +44,10 @@ const UploadPhoto = ({navigation, route}) => {
 
   const saveAndContinue = () => {
     data.photo = photoForDB;
-    storeData('user', data);
     Firebase.database().ref(`users/${uid}/`).update({
       photo: photoForDB,
     });
+    storeData('user', data);
     navigation.replace('MainApp');
   };
 

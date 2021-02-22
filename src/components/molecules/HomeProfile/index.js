@@ -2,7 +2,8 @@ import React from 'react';
 import {useState} from 'react';
 import {useEffect} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {ILNullPhoto} from '../../../assets';
+import {Firebase} from '../../../config';
+
 import {colors, fonts} from '../../../utils';
 import {getData} from '../../../utils/localStorage';
 
