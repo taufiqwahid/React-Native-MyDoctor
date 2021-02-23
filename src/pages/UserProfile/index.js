@@ -3,6 +3,8 @@ import {useState} from 'react';
 import {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Header, List, Profile} from '../../components';
+import {Firebase} from '../../config';
+import {alertMessage} from '../../utils/AlertMessage';
 import {getData} from '../../utils/localStorage';
 
 const UserProfile = ({navigation}) => {
@@ -12,6 +14,28 @@ const UserProfile = ({navigation}) => {
       setProfile(data);
     });
   }, []);
+
+  const logout = () => {
+    Firebase.auth()
+      .signOut()
+      .then(() => {
+        alertMessage({
+          message: 'Bye,You will Logout!',
+          icon: 'info',
+          type: 'info',
+        });
+        setTimeout(() => {
+          navigation.replace('GetStarted');
+        }, 1000);
+      })
+      .catch((error) => {
+        alertMessage({
+          message: 'Failed Logout!',
+          icon: 'danger',
+          type: 'danger',
+        });
+      });
+  };
   const photo = {uri: profile.photo};
   return (
     <View style={styles.page}>
@@ -43,11 +67,11 @@ const UserProfile = ({navigation}) => {
         onPress={() => alert('ALERTTT')}
       />
       <List
-        name="Help Center"
+        name="Logout"
         icon="help"
-        desc="Read our guidelines"
+        desc="Out of Account"
         type="icon-next"
-        onPress={() => alert('ALERTTT')}
+        onPress={() => logout()}
       />
     </View>
   );

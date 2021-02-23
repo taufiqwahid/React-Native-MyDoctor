@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {ILLogo} from '../../assets';
+import {IconFemale, ILLogo} from '../../assets';
 import {Button, Gap, Input, Link} from '../../components';
 import Loading from '../../components/molecules/Loading';
 import {Firebase} from '../../config';
@@ -29,11 +29,6 @@ const Login = ({navigation}) => {
             if (data) {
               setLoading(false);
               storeData('user', data.val());
-              alertMessage({
-                message: 'Login Success',
-                type: 'success',
-                icon: 'success',
-              });
               setForm('reset');
               navigation.replace('MainApp');
             }
@@ -42,7 +37,6 @@ const Login = ({navigation}) => {
       .catch((error) => {
         setLoading(false);
         var errorMessage = error.message;
-        console.log(errorMessage);
         alertMessage({message: errorMessage, type: 'danger', icon: 'danger'});
       });
   };
@@ -58,6 +52,8 @@ const Login = ({navigation}) => {
             onChangeText={(value) => {
               setForm('email', value);
             }}
+            textContentType="emailAddress"
+            keyboardType="email-address"
           />
           <Gap height={24} />
           <Input

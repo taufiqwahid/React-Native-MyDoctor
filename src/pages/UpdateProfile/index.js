@@ -1,7 +1,7 @@
 import React from 'react';
 import {useEffect} from 'react';
 import {useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Button, Gap, Header, Input, Profile} from '../../components';
 import {Firebase} from '../../config';
 import {alertMessage} from '../../utils/AlertMessage';
@@ -9,6 +9,7 @@ import {getData, storeData} from '../../utils/localStorage';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {ILNullPhoto} from '../../assets';
 import Loading from '../../components/molecules/Loading';
+import {colors, fonts} from '../../utils';
 
 const UpdateProfile = ({navigation}) => {
   const [profile, setProfile] = useState({});
@@ -20,9 +21,11 @@ const UpdateProfile = ({navigation}) => {
     });
   }, []);
   const [photoForDB, setPhotoForDB] = useState();
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
   const [photo, setPhoto] = useState(ILNullPhoto);
   const [loading, setLoading] = useState(false);
+  const user = Firebase.auth().currentUser;
 
   const updatePhoto = () => {
     launchImageLibrary(
@@ -51,14 +54,47 @@ const UpdateProfile = ({navigation}) => {
 
   const changeText = (key, value) => {
     setProfile({...profile, [key]: value});
-    setPassword(value);
   };
 
-  const updateProfile = () => {
-    setLoading(true);
-    const user = Firebase.auth().currentUser;
-    profile.photo = photoForDB;
+  const updatePassword = () => {
+    const credential = Firebase.auth.EmailAuthProvider.credential(
+      user.email,
+      password,
+    );
+    user
+      .reauthenticateWithCredential(credential)
+      .then(function () {
+        user
+          .updatePassword(newPassword)
+          .then(function () {
+            setLoading(false);
+            alertMessage({
+              message: 'Update password Success ',
+              icon: 'info',
+              type: 'info',
+            });
+          })
+          .catch(function (error) {
+            setLoading(false);
+            alertMessage({
+              message: error.message,
+              icon: 'danger',
+              type: 'danger',
+            });
+          });
+      })
+      .catch(function (error) {
+        setLoading(false);
+        alertMessage({
+          message: error.message,
+          icon: 'danger',
+          type: 'danger',
+        });
+      });
+  };
 
+  const updateData = () => {
+    profile.photo = photoForDB ? photoForDB : profile.photo;
     Firebase.database()
       .ref(`users/${user.uid}/`)
       .update(profile, () => {
@@ -72,6 +108,26 @@ const UpdateProfile = ({navigation}) => {
         storeData('user', profile);
         navigation.replace('MainApp');
       });
+  };
+
+  const updateProfile = () => {
+    console.log(password.length);
+    setLoading(true);
+    if (password.length > 0 && newPassword.length > 0) {
+      if (password.length < 6 && newPassword.length < 6) {
+        setLoading(false);
+        alertMessage({
+          message: 'Password must be 6 characters or more',
+          icon: 'danger',
+          type: 'danger',
+        });
+      } else {
+        updatePassword();
+        updateData();
+      }
+    } else {
+      updateData();
+    }
   };
 
   return (
@@ -101,11 +157,20 @@ const UpdateProfile = ({navigation}) => {
           />
           <Gap height={24} />
           <Input label="Email Address" value={profile.email} disable />
-          <Gap height={24} />
+          <Gap height={35} />
+          <Text style={styles.text}>Enter if want update your password</Text>
           <Input
-            label="Update Password"
             value={password}
-            onChangeText={(value) => changeText('password', value)}
+            onChangeText={(value) => setPassword(value)}
+            textContentType="password"
+            placeholder="Current Password"
+            secureTextEntry
+          />
+          <Input
+            value={newPassword}
+            onChangeText={(value) => setNewPassword(value)}
+            textContentType="newPassword"
+            placeholder="New Password"
             secureTextEntry
           />
           <Gap height={40} />
@@ -123,4 +188,10 @@ export default UpdateProfile;
 const styles = StyleSheet.create({
   page: {backgroundColor: 'white', flex: 1},
   content: {paddingHorizontal: 40},
+  text: {
+    textAlign: 'center',
+    fontFamily: fonts.primary.normal,
+    fontSize: 16,
+    color: colors.text.menuActive,
+  },
 });

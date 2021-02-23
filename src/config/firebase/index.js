@@ -10,6 +10,11 @@ var firebaseConfig = {
   measurementId: 'G-74S867XGY6',
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app(); // if already initialized, use that one
+}
 
 export default Firebase = firebase;
