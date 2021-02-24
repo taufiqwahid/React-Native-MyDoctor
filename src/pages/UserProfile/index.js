@@ -2,6 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 import {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {ILNullPhoto} from '../../assets';
 import {Header, List, Profile} from '../../components';
 import {Firebase} from '../../config';
 import {alertMessage} from '../../utils/AlertMessage';
@@ -9,9 +10,14 @@ import {getData} from '../../utils/localStorage';
 
 const UserProfile = ({navigation}) => {
   const [profile, setProfile] = useState({});
+  const [photo, setPhoto] = useState(ILNullPhoto);
   useEffect(() => {
     getData('user').then((data) => {
       setProfile(data);
+      if (typeof data.photo === 'string') {
+        const source = {uri: data.photo};
+        setPhoto(source);
+      }
     });
   }, []);
 
@@ -36,7 +42,7 @@ const UserProfile = ({navigation}) => {
         });
       });
   };
-  const photo = {uri: profile.photo};
+
   return (
     <View style={styles.page}>
       <Header title="Profile" onPress={() => navigation.replace('MainApp')} />

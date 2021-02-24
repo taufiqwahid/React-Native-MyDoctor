@@ -2,21 +2,26 @@ import React from 'react';
 import {useState} from 'react';
 import {useEffect} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Firebase} from '../../../config';
-
+import {ILNullPhoto} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 import {getData} from '../../../utils/localStorage';
 
 const HomeProfile = ({onPress}) => {
   const [profile, setProfile] = useState({});
+  const [photo, setPhoto] = useState(ILNullPhoto);
   useEffect(() => {
     getData('user').then((data) => {
+      if (typeof data.photo === 'string') {
+        const source = {uri: data.photo};
+        setPhoto(source);
+      }
       setProfile(data);
     });
   }, []);
+
   return (
     <TouchableOpacity onPress={onPress} style={styles.page}>
-      <Image source={{uri: profile.photo}} style={styles.avatar} />
+      <Image source={photo} style={styles.avatar} />
       <View>
         <Text style={styles.name}>{profile.fullName}</Text>
         <Text style={styles.profession}>{profile.profession}</Text>

@@ -1,29 +1,27 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Gap, Header, Input} from '../../components';
-import {colors, useForm} from '../../utils';
+import {useForm} from '../../utils';
 import {Firebase} from '../../config';
 import Loading from '../../components/molecules/Loading';
 import {showMessage} from 'react-native-flash-message';
 import {alertMessage} from '../../utils/AlertMessage';
-import {storeData} from '../../utils/localStorage';
+import {useDispatch, useSelector} from 'react-redux';
+import {ILNullPhoto} from '../../assets';
 
 const Register = ({navigation}) => {
-  const [form, setForm] = useForm({
-    fullName: '',
-    profession: '',
-    email: '',
-    password: '',
-  });
+  const [form, setForm] = useForm({});
 
-  const [loading, setLoading] = useState(false);
+  const stateGlobal = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const onContinue = () => {
-    setLoading(true);
+    dispatch({type: 'SET_LOADING', value: true});
     const data = {
       fullName: form.fullName,
       profession: form.profession,
       email: form.email,
+      photo: ILNullPhoto,
     };
 
     Firebase.auth()
@@ -41,15 +39,14 @@ const Register = ({navigation}) => {
                 type: 'success',
                 icon: 'success',
               });
-              setLoading(false);
+              dispatch({type: 'SET_LOADING', value: false});
               navigation.replace('UploadPhoto', data);
               setForm('reset');
             }
           });
       })
       .catch((error) => {
-        setLoading(false);
-        var errorCode = error.code;
+        dispatch({type: 'SET_LOADING', value: false});
         var errorMessage = error.message;
         showMessage({
           message: errorMessage,
@@ -57,7 +54,6 @@ const Register = ({navigation}) => {
           icon: 'danger',
           color: 'white',
         });
-        console.log('errorCode = ', errorCode);
       });
   };
 
@@ -100,7 +96,7 @@ const Register = ({navigation}) => {
           />
         </ScrollView>
       </View>
-      {loading && <Loading />}
+      {stateGlobal.loading && <Loading />}
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
-import {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {IconFemale, ILLogo} from '../../assets';
+import {useDispatch, useSelector} from 'react-redux';
+import {ILLogo} from '../../assets';
 import {Button, Gap, Input, Link} from '../../components';
 import Loading from '../../components/molecules/Loading';
 import {Firebase} from '../../config';
@@ -11,14 +11,15 @@ import {colors} from '../../utils/colors';
 import {storeData} from '../../utils/localStorage';
 
 const Login = ({navigation}) => {
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const stateGlobal = useSelector((state) => state);
 
   const [form, setForm] = useForm({
     email: '',
     password: '',
   });
   const signIn = () => {
-    setLoading(true);
+    dispatch({type: 'SET_LOADING', value: true});
     Firebase.auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then((response) => {
@@ -27,7 +28,7 @@ const Login = ({navigation}) => {
           .once('value')
           .then((data) => {
             if (data) {
-              setLoading(false);
+              dispatch({type: 'SET_LOADING', value: false});
               storeData('user', data.val());
               setForm('reset');
               navigation.replace('MainApp');
@@ -35,7 +36,7 @@ const Login = ({navigation}) => {
           });
       })
       .catch((error) => {
-        setLoading(false);
+        dispatch({type: 'SET_LOADING', value: false});
         var errorMessage = error.message;
         alertMessage({message: errorMessage, type: 'danger', icon: 'danger'});
       });
@@ -75,7 +76,7 @@ const Login = ({navigation}) => {
           textAlign="center"
         />
       </View>
-      {loading && <Loading />}
+      {stateGlobal.loading && <Loading />}
     </>
   );
 };

@@ -10,22 +10,27 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import {ILNullPhoto} from '../../assets';
 import Loading from '../../components/molecules/Loading';
 import {colors, fonts} from '../../utils';
+import {useDispatch, useSelector} from 'react-redux';
 
 const UpdateProfile = ({navigation}) => {
   const [profile, setProfile] = useState({});
-  useEffect(() => {
-    getData('user').then((data) => {
-      setProfile(data);
-      const source = {uri: data.photo};
-      setPhoto(source);
-    });
-  }, []);
   const [photoForDB, setPhotoForDB] = useState();
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [photo, setPhoto] = useState(ILNullPhoto);
-  const [loading, setLoading] = useState(false);
   const user = Firebase.auth().currentUser;
+  const stateGlobal = useSelector((state) => state);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getData('user').then((data) => {
+      console.log('aaa', typeof data.photo);
+      setProfile(data);
+      if (typeof data.photo === 'string') {
+        const source = {uri: data.photo};
+        setPhoto(source);
+      }
+    });
+  }, []);
 
   const updatePhoto = () => {
     launchImageLibrary(
@@ -34,7 +39,7 @@ const UpdateProfile = ({navigation}) => {
         includeBase64: true,
         maxHeight: 200,
         maxWidth: 200,
-        quality: 0.5,
+        quality: 0.8,
       },
       (response) => {
         if (response.didCancel) {
@@ -67,7 +72,7 @@ const UpdateProfile = ({navigation}) => {
         user
           .updatePassword(newPassword)
           .then(function () {
-            setLoading(false);
+            dispatch({type: 'SET_LOADING', value: false});
             alertMessage({
               message: 'Update password Success ',
               icon: 'info',
@@ -75,7 +80,7 @@ const UpdateProfile = ({navigation}) => {
             });
           })
           .catch(function (error) {
-            setLoading(false);
+            dispatch({type: 'SET_LOADING', value: false});
             alertMessage({
               message: error.message,
               icon: 'danger',
@@ -84,7 +89,7 @@ const UpdateProfile = ({navigation}) => {
           });
       })
       .catch(function (error) {
-        setLoading(false);
+        dispatch({type: 'SET_LOADING', value: false});
         alertMessage({
           message: error.message,
           icon: 'danger',
@@ -99,7 +104,7 @@ const UpdateProfile = ({navigation}) => {
       .ref(`users/${user.uid}/`)
       .update(profile, () => {
         storeData('user', profile);
-        setLoading(false);
+        dispatch({type: 'SET_LOADING', value: false});
         alertMessage({
           message: 'Updated Profile',
           icon: 'success',
@@ -111,11 +116,10 @@ const UpdateProfile = ({navigation}) => {
   };
 
   const updateProfile = () => {
-    console.log(password.length);
-    setLoading(true);
+    dispatch({type: 'SET_LOADING', value: true});
     if (password.length > 0 && newPassword.length > 0) {
       if (password.length < 6 && newPassword.length < 6) {
-        setLoading(false);
+        dispatch({type: 'SET_LOADING', value: false});
         alertMessage({
           message: 'Password must be 6 characters or more',
           icon: 'danger',
@@ -178,7 +182,7 @@ const UpdateProfile = ({navigation}) => {
           <Gap height={48} />
         </ScrollView>
       </View>
-      {loading && <Loading />}
+      {stateGlobal.loading && <Loading />}
     </>
   );
 };

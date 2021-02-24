@@ -9,7 +9,7 @@ import {storeData} from '../../utils/localStorage';
 
 const Splash = ({navigation}) => {
   useEffect(() => {
-    Firebase.auth().onAuthStateChanged((user) => {
+    const unsubscribe = Firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         Firebase.database()
           .ref(`/users/${user.uid}`)
@@ -22,6 +22,8 @@ const Splash = ({navigation}) => {
         navigation.replace('GetStarted');
       }
     });
+
+    return () => unsubscribe();
   }, [navigation]);
 
   return (

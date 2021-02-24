@@ -51,6 +51,13 @@ const UploadPhoto = ({navigation, route}) => {
     navigation.replace('MainApp');
   };
 
+  const skipAndContinue = () => {
+    storeData('user', data);
+    setTimeout(() => {
+      navigation.replace('MainApp');
+    }, 1000);
+  };
+
   return (
     <View style={styles.page}>
       <Header title="Upload Photo" onPress={() => navigation.goBack()} />
@@ -75,7 +82,7 @@ const UploadPhoto = ({navigation, route}) => {
           />
           <Gap height={30} />
           <Link
-            onPress={() => navigation.replace('MainApp')}
+            onPress={() => skipAndContinue()}
             size={16}
             text="Skip for this"
             textAlign="center"
