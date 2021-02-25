@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {categoryDoctors, doctors, news} from '../../assets';
+import {doctors} from '../../assets';
 import {
   DoctorCategory,
   Gap,
@@ -9,9 +9,44 @@ import {
   NewsItem,
   RatedDoctor,
 } from '../../components';
+import {Firebase} from '../../config';
 import {colors, fonts} from '../../utils';
 
 const Doctors = ({navigation}) => {
+  const [news, setNews] = useState([]);
+  const [categoryDoctors, setCategoryDoctors] = useState([]);
+  const [ratedDoctor, setRatedDoctor] = useState([]);
+
+  useEffect(() => {
+    Firebase.database()
+      .ref('category_doctors/')
+      .once('value')
+      .then((data) => {
+        if (data.val()) {
+          setCategoryDoctors(data.val());
+        }
+      });
+    Firebase.database()
+      .ref('doctors/')
+      .orderByChild('rate')
+      .limitToLast(3)
+      .once('value')
+      .then((data) => {
+        const item = Object.values(data.val());
+        if (item) {
+          setRatedDoctor(item);
+        }
+      });
+
+    Firebase.database()
+      .ref('news/')
+      .once('value')
+      .then((data) => {
+        if (data.val()) {
+          setNews(data.val());
+        }
+      });
+  }, []);
   return (
     <View style={styles.page}>
       <View style={styles.content}>
@@ -25,10 +60,11 @@ const Doctors = ({navigation}) => {
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <View style={styles.DoctorCategory}>
                 <Gap width={16} />
-                {categoryDoctors.data.map((item) => {
+                {categoryDoctors.map((item) => {
                   return (
                     <DoctorCategory
                       category={item.doctor}
+                      photo={item.photo}
                       key={item.id}
                       onPress={() => navigation.navigate('ChooseDoctor')}
                     />
@@ -43,13 +79,14 @@ const Doctors = ({navigation}) => {
           <Text>Top Rated Doctor</Text>
           <Gap height={16} />
           <View>
-            {doctors.data.map((item) => {
+            {ratedDoctor.map((item, index) => {
               return (
                 <RatedDoctor
-                  key={item.id}
-                  name={item.name}
-                  specialis={item.specialis}
-                  rated={item.rated}
+                  key={index}
+                  name={item.fullName}
+                  specialis={item.profession}
+                  rated={item.rate}
+                  photo={item.photo}
                   onPress={() => navigation.navigate('DoctorProfile')}
                 />
               );
@@ -58,19 +95,16 @@ const Doctors = ({navigation}) => {
           <Gap height={16} />
           <Text>Good News</Text>
           <Gap height={16} />
-          <View>
-            {news.data.map((item, index) => {
-              return (
-                <NewsItem
-                  title={item.title}
-                  time={item.time}
-                  index={item.id}
-                  key={index}
-                />
-              );
-            })}
-          </View>
-          <Gap height={16} />
+          {news.map((item) => {
+            return (
+              <NewsItem
+                key={item.id}
+                image={item.image}
+                title={item.title}
+                date={item.date}
+              />
+            );
+          })}
         </ScrollView>
       </View>
     </View>

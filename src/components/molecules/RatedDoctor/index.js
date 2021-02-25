@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {DDokter1, DDokter2, DDokter3, IconStarRated} from '../../../assets';
+import {IconStarRated} from '../../../assets';
 import {colors} from '../../../utils/colors';
 import {fonts} from '../../../utils/fonts';
 
-const RatedDoctor = ({specialis, name, rated, onPress}) => {
+const RatedDoctor = ({specialis, name, rated, photo, onPress}) => {
+  const [image, setImage] = useState();
+
+  useEffect(() => {
+    const source = {uri: photo};
+    setImage(source);
+  }, []);
+
   const Rated = () => {
     const RatedIcon = [];
     for (let index = 0; index < rated; index++) {
@@ -13,28 +20,9 @@ const RatedDoctor = ({specialis, name, rated, onPress}) => {
     return RatedIcon;
   };
 
-  const Avatar = () => {
-    switch (specialis) {
-      case 'Dokter Psikiater':
-        return <Image source={DDokter2} style={styles.avatar} />;
-
-      case 'Dokter Anak':
-        return <Image source={DDokter2} style={styles.avatar} />;
-
-      case 'Dokter Umum':
-        return <Image source={DDokter3} style={styles.avatar} />;
-
-      case 'Dokter Obat':
-        return <Image source={DDokter1} style={styles.avatar} />;
-
-      default:
-        return <Image source={DDokter1} style={styles.avatar} />;
-    }
-  };
-
   return (
     <TouchableOpacity style={styles.page} onPress={onPress}>
-      <Avatar />
+      <Image source={image} style={styles.avatar} />
       <View style={styles.profile}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.specialis}>{specialis}</Text>
@@ -68,8 +56,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 2,
     fontFamily: fonts.primary[600],
+    textTransform: 'capitalize',
   },
   specialis: {
+    textTransform: 'capitalize',
     color: colors.text.secondary,
     fontFamily: fonts.primary[400],
     fontSize: 12,

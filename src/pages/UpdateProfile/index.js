@@ -23,7 +23,6 @@ const UpdateProfile = ({navigation}) => {
   const dispatch = useDispatch();
   useEffect(() => {
     getData('user').then((data) => {
-      console.log('aaa', typeof data.photo);
       setProfile(data);
       if (typeof data.photo === 'string') {
         const source = {uri: data.photo};
@@ -39,7 +38,7 @@ const UpdateProfile = ({navigation}) => {
         includeBase64: true,
         maxHeight: 200,
         maxWidth: 200,
-        quality: 0.8,
+        quality: 1,
       },
       (response) => {
         if (response.didCancel) {

@@ -21,7 +21,7 @@ const UploadPhoto = ({navigation, route}) => {
         includeBase64: true,
         maxHeight: 200,
         maxWidth: 200,
-        quality: 0.8,
+        quality: 1,
       },
       (response) => {
         if (response.didCancel) {

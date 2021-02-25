@@ -1,28 +1,15 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {DNews1, DNews2, DNews3} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const NewsItem = ({title, time, index}) => {
-  const Picture = () => {
-    switch (index) {
-      case 1:
-        return <Image style={styles.picture} source={DNews1} />;
-      case 2:
-        return <Image style={styles.picture} source={DNews2} />;
-      case 3:
-        return <Image style={styles.picture} source={DNews3} />;
-      default:
-        return <Image style={styles.picture} source={DNews1} />;
-    }
-  };
+const NewsItem = ({title, date, image}) => {
   return (
     <View style={styles.page}>
       <View>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.time}>{time}</Text>
+        <Text style={styles.date}>{date}</Text>
       </View>
-      <Picture key={index} />
+      <Image style={styles.picture} source={{uri: image}} />
     </View>
   );
 };
@@ -42,11 +29,13 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     fontFamily: fonts.primary[600],
     fontSize: 16,
+    color: colors.text.primary,
   },
-  time: {
+  date: {
     fontSize: 12,
     fontFamily: fonts.primary[400],
     marginBottom: 12,
+    color: colors.text.secondary,
   },
   picture: {
     height: 60,

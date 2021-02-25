@@ -1,11 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {hospitals, ILLBGHospital} from '../../assets';
+import {ILLBGHospital} from '../../assets';
 import ListHospital from '../../components/molecules/ListHospital';
+import {Firebase} from '../../config';
 import {colors, fonts} from '../../utils';
 
 const Hospitals = () => {
+  const [hospitals, setHospitals] = useState();
+
+  useEffect(() => {
+    Firebase.database()
+      .ref('/hospitals/')
+      .once('value')
+      .then((data) => {
+        if (data.val()) {
+          setHospitals(data.val());
+        }
+      });
+  }, []);
   return (
     <View style={styles.page}>
       <ImageBackground source={ILLBGHospital} style={styles.bgImage}>
@@ -15,14 +28,14 @@ const Hospitals = () => {
 
       <View style={styles.content}>
         <ScrollView>
-          {hospitals.data.map((item) => {
+          {hospitals.map((item) => {
             return (
               <ListHospital
-                index={item.id}
                 key={item.id}
                 name={item.name}
-                title={item.title}
+                hospital={item.hospital}
                 address={item.address}
+                image={item.image}
               />
             );
           })}

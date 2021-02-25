@@ -1,6 +1,5 @@
 import React from 'react';
-import {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {
   ILLDokterAnak,
@@ -10,24 +9,29 @@ import {
 } from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const DoctorCategory = ({category, onPress}) => {
+const DoctorCategory = ({category, photo, onPress}) => {
   const Icon = () => {
-    if (category === 'dokter anak') {
-      return <ILLDokterAnak style={styles.image} />;
-    }
-    if (category === 'dokter umum') {
-      return <ILLDokterUmum style={styles.image} />;
-    }
-    if (category === 'dokter psikiater') {
-      return <ILLDokterPsikiater style={styles.image} />;
-    }
-    if (category === 'dokter obat') {
-      return <ILLDokterObat style={styles.image} />;
+    switch (category) {
+      case 'dokter anak':
+        return <ILLDokterAnak style={styles.image} />;
+
+      case 'apoteker':
+        return <ILLDokterObat style={styles.image} />;
+
+      case 'dokter psikiater':
+        return <ILLDokterPsikiater style={styles.image} />;
+
+      case 'dokter umum':
+        return <ILLDokterUmum style={styles.image} />;
+
+      default:
+        return <ILLDokterUmum style={styles.image} />;
     }
   };
   return (
     <TouchableOpacity style={styles.page} onPress={onPress}>
       <Icon />
+      {/* <Image style={styles.image} source={{uri: photo}} /> */}
       <View style={styles.text}>
         <Text style={styles.textButuh}>Saya butuh</Text>
         <Text style={styles.textDokter}>{category}</Text>
@@ -42,7 +46,7 @@ const styles = StyleSheet.create({
   page: {
     borderRadius: 10,
     backgroundColor: colors.item.primary1,
-    width: 100,
+    width: 105,
     height: 130,
     marginRight: 10,
     marginTop: 16,
@@ -64,6 +68,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   textDokter: {
+    textTransform: 'lowercase',
     color: colors.text.primary,
     fontFamily: fonts.primary[600],
     fontSize: 12,
