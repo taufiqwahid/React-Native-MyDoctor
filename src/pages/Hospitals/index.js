@@ -7,16 +7,14 @@ import {Firebase} from '../../config';
 import {colors, fonts} from '../../utils';
 
 const Hospitals = () => {
-  const [hospitals, setHospitals] = useState();
+  const [hospitals, setHospitals] = useState([]);
 
   useEffect(() => {
     Firebase.database()
-      .ref('/hospitals/')
+      .ref('hospitals/')
       .once('value')
       .then((data) => {
-        if (data.val()) {
-          setHospitals(data.val());
-        }
+        setHospitals(data.val());
       });
   }, []);
   return (

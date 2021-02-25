@@ -1,24 +1,37 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button, Gap, Header, Profile, ProfileItem} from '../../components';
 
-const DoctorProfile = ({navigation}) => {
+const DoctorProfile = ({navigation, route}) => {
+  const [image, setImage] = useState();
+  const [sex, setSex] = useState();
+  const {
+    fullName,
+    profession,
+    gender,
+    university,
+    hospital_address,
+    str_number,
+    photo,
+  } = route.params;
+
+  useEffect(() => {
+    gender === 'pria' ? setSex('icon-male') : setSex('icon-female');
+    const source = {uri: photo};
+    setImage(source);
+  }, []);
   return (
     <View style={styles.page}>
       <Header title="Profile Doctor" onPress={() => navigation.goBack()} />
-      <Profile
-        type="icon-female"
-        name="Nairobi Putri Hayza"
-        desc="Dokter Anak"
-      />
+      <Profile type={sex} photo={image} name={fullName} desc={profession} />
       <Gap height={16} />
-      <ProfileItem desc="Alumnus" name="Universitas Fajar" />
-      <ProfileItem desc="Tempat Praktik" name="Rumah Sakit Umum, Bandung" />
-      <ProfileItem desc="No. STR" name="0000116622081996" />
+      <ProfileItem desc="Alumnus" name={university} />
+      <ProfileItem desc="Tempat Praktik" name={hospital_address} />
+      <ProfileItem desc="No. STR" name={str_number} />
       <View style={styles.button}>
         <Button
           title="Start Consultation"
-          onPress={() => navigation.navigate('Chating')}
+          onPress={() => navigation.navigate('Chating', route)}
         />
       </View>
     </View>

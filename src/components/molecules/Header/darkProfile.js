@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {DDokter1} from '../../../assets';
+import {ILNullPhoto} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 import Button from '../../atoms/Button';
 
-const DarkProfile = ({name, specialis, onPress, type}) => {
+const DarkProfile = ({name, specialis, photo, onPress, type}) => {
+  const [image, setImage] = useState(ILNullPhoto);
+  useEffect(() => {
+    const source = {uri: photo};
+    setImage(source);
+  }, []);
   return (
     <View style={styles.page(type)}>
       <Button type="icon-only" icon="back-light" onPress={onPress} />
@@ -12,7 +17,7 @@ const DarkProfile = ({name, specialis, onPress, type}) => {
         <Text style={styles.name(type)}>{name}</Text>
         <Text style={styles.specialis(type)}>{specialis}</Text>
       </View>
-      <Image source={DDokter1} style={styles.profile} />
+      <Image source={image} style={styles.profile} />
     </View>
   );
 };
@@ -36,8 +41,10 @@ const styles = StyleSheet.create({
     color: 'white',
     marginLeft: 16,
     textAlign: 'center',
+    textTransform: 'capitalize',
   }),
   specialis: (type) => ({
+    textTransform: 'capitalize',
     fontSize: 14,
     fontFamily: fonts.primary[400],
     color: colors.text.secondary,

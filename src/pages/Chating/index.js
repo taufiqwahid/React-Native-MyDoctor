@@ -5,14 +5,15 @@ import Header from '../../components/molecules/Header';
 import InputChat from '../../components/molecules/InputChat';
 import {colors, fonts} from '../../utils';
 
-const Chating = ({navigation}) => {
+const Chating = ({navigation, route}) => {
+  const {fullName, profession, photo} = route.params.params;
   return (
     <View style={styles.page}>
       <Header
         type="dark-profile"
-        title="dasd"
-        name="Andi Muhammad Taufiq "
-        specialis="Dokter Anak"
+        name={fullName}
+        photo={photo}
+        specialis={profession}
         onPress={() => navigation.goBack()}
       />
       <ScrollView style={styles.content}>

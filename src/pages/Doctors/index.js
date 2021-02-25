@@ -26,6 +26,7 @@ const Doctors = ({navigation}) => {
           setCategoryDoctors(data.val());
         }
       });
+
     Firebase.database()
       .ref('doctors/')
       .orderByChild('rate')
@@ -66,7 +67,7 @@ const Doctors = ({navigation}) => {
                       category={item.doctor}
                       photo={item.photo}
                       key={item.id}
-                      onPress={() => navigation.navigate('ChooseDoctor')}
+                      onPress={() => navigation.navigate('ChooseDoctor', item)}
                     />
                   );
                 })}
@@ -87,7 +88,7 @@ const Doctors = ({navigation}) => {
                   specialis={item.profession}
                   rated={item.rate}
                   photo={item.photo}
-                  onPress={() => navigation.navigate('DoctorProfile')}
+                  onPress={() => navigation.navigate('DoctorProfile', item)}
                 />
               );
             })}

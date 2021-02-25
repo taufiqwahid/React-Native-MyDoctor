@@ -5,7 +5,7 @@ import {colors, fonts} from '../../../utils';
 const ListHospital = ({image, hospital, address, name}) => {
   return (
     <View style={styles.page}>
-      <Image source={{uri: image}} style={styles.image} />;
+      <Image source={{uri: image}} style={styles.image} />
       <View>
         <Text style={styles.title}>{hospital}</Text>
         <Text style={styles.title}>{name}</Text>

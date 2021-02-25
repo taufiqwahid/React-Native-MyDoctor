@@ -6,11 +6,12 @@ import {colors} from '../../../utils/colors';
 import Button from '../../atoms/Button';
 import DarkProfile from './darkProfile';
 
-const Header = ({title, name, specialis, onPress, type}) => {
+const Header = ({title, name, specialis, onPress, photo, type}) => {
   if (type === 'dark-profile') {
     return (
       <DarkProfile
         name={name}
+        photo={photo}
         specialis={specialis}
         onPress={onPress}
         type={type}
@@ -48,5 +49,6 @@ const styles = StyleSheet.create({
     color: type === 'dark' ? 'white' : colors.text.primary,
     flex: 1,
     textAlign: 'center',
+    textTransform: 'capitalize',
   }),
 });
