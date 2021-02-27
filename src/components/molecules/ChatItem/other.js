@@ -1,21 +1,25 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {DDokter1} from '../../../assets';
+import {ILNullPhoto} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const Other = () => {
+const Other = ({photo, chatContent, chatTime}) => {
+  const [image, setImage] = useState(ILNullPhoto);
+  useEffect(() => {
+    if (typeof photo === 'string') {
+      const source = {uri: photo};
+      setImage(source);
+    }
+  }, []);
+
   return (
     <View style={styles.page}>
-      <Image source={DDokter1} style={styles.avatar} />
+      <Image source={image} style={styles.avatar} />
       <View style={styles.wrapChat}>
         <View style={styles.container}>
-          <Text style={styles.text}>
-            Ibu dokter, apakah memakan jeruk tiap hari itu buruk? Ibu dokter,
-            apakah memakan jeruk tiap hari itu buruk? Ibu dokter, apakah memakan
-            jeruk tiap hari itu buruk?
-          </Text>
+          <Text style={styles.text}>{chatContent}</Text>
         </View>
-        <Text style={styles.time}>4.20 AM</Text>
+        <Text style={styles.time}>{chatTime}</Text>
       </View>
     </View>
   );

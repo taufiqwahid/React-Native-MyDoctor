@@ -7,7 +7,7 @@ import IconOnly from './iconOnly';
 
 const Button = ({type, title, onPress, icon, disable, active}) => {
   if (type === 'icon-btn') {
-    return <IconBtn active={active} />;
+    return <IconBtn active={active} onPress={onPress} />;
   }
   if (type === 'icon-only') {
     return <IconOnly icon={icon} onPress={onPress} />;

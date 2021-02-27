@@ -62,8 +62,10 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[600],
     marginTop: 16,
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   profession: {
+    textTransform: 'capitalize',
     textAlign: 'center',
     fontSize: 16,
     color: colors.text.secondary,

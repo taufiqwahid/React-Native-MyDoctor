@@ -44,7 +44,7 @@ export const colors = {
     menuActive: mainColors.primary2,
   },
   input: {
-    secondary: mainColors.secondary2,
+    secondary: mainColors.secondary1,
     danger: mainColors.danger1,
     primary: mainColors.blue1,
     text: {

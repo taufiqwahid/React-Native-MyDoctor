@@ -1,13 +1,23 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import IsMe from './isMe.js';
 import Other from './other.js';
 
-const ChatItem = ({isMe}) => {
+const ChatItem = ({isMe, data, photo}) => {
+  const dataChat = data.data;
+  console.log('object', dataChat);
   if (isMe) {
-    return <IsMe />;
+    return (
+      <IsMe chatContent={dataChat.chatContent} chatTime={dataChat.chatTime} />
+    );
   }
-  return <Other />;
+  return (
+    <Other
+      chatContent={dataChat.chatContent}
+      chatTime={dataChat.chatTime}
+      photo={photo}
+    />
+  );
 };
 
 export default ChatItem;

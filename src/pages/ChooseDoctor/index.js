@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {DDokter1} from '../../assets';
 import Header from '../../components/molecules/Header';
 import List from '../../components/molecules/List';
 import {Firebase} from '../../config';
@@ -12,12 +11,12 @@ const ChooseDoctor = ({navigation, route}) => {
   useEffect(() => {
     Firebase.database()
       .ref('doctors/')
+      .orderByChild('category')
+      .equalTo(doctor)
       .once('value')
       .then((data) => {
         const item = Object.values(data.val());
-        if (item) {
-          setProfile(item);
-        }
+        setProfile(item);
       });
   }, []);
   return (
@@ -28,22 +27,19 @@ const ChooseDoctor = ({navigation, route}) => {
           type="dark"
           onPress={() => navigation.goBack()}
         />
-        {profile.map((item) => {
-          if (item.category === doctor) {
-            const photo = {uri: item.photo};
-            return (
-              <List
-                key={item.id}
-                name={item.fullName}
-                desc={item.gender}
-                image={photo}
-                type="icon-next"
-                onPress={() => navigation.navigate('DoctorProfile', item)}
-              />
-            );
-          } else {
-            // console.log('object');
-          }
+
+        {profile.map((item, index) => {
+          const photo = {uri: item.photo};
+          return (
+            <List
+              key={index}
+              name={item.fullName}
+              desc={item.gender}
+              image={photo}
+              type="icon-next"
+              onPress={() => navigation.navigate('DoctorProfile', item)}
+            />
+          );
         })}
       </ScrollView>
     </View>

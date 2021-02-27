@@ -1,14 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import {colors, fonts} from '../../../utils';
 import Button from '../../atoms/Button';
 
-const InputChat = () => {
+const InputChat = ({value, onChangeText, onPress}) => {
   return (
     <View style={styles.page}>
-      <TextInput style={styles.input} placeholder="taufiqwahid" />
-      <Button type="icon-btn" active={true} />
+      <TextInput
+        style={styles.input}
+        value={value}
+        onChangeText={onChangeText}
+        placeholder=""
+      />
+      <Button type="icon-btn" onPress={onPress} active={true} />
     </View>
   );
 };
@@ -31,5 +36,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[400],
     borderRadius: 10,
     marginRight: 10,
+    color: colors.text.secondary,
   },
 });

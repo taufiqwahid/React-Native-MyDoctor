@@ -1,0 +1,63 @@
+- Chatting
+    - chatID --> (uidUser_uidDoctor)
+        - allChat
+            - dateChat --> (2020-05-08)
+                - chat1
+                    - sentBy
+                    - chatDate
+                    - chatTime
+                    - chatContent
+                - chat2
+                    - sentBy
+                    - chatDate
+                    - chatTime
+                    - chatContent
+                
+            - dateChat --> (2020-05-08)
+                - chat1
+                    - sentBy
+                    - chatDate
+                    - chatTime
+                    - chatContent
+                - chat2
+                    - sentBy
+                    - chatDate
+                    - chatTime
+                    - chatContent
+    - chatID --> (uidUser_uidDoctor)
+        - allChat
+            - dateChat --> (2020-05-08)
+                - chat1
+                    - sentBy
+                    - chatDate
+                    - chatTime
+                    - chatContent
+                - chat2
+                    - sentBy
+                    - chatDate
+                    - chatTime
+                    - chatContent
+                
+            - dateChat --> (2020-05-08)
+                - chat1
+                    - sentBy
+                    - chatDate
+                    - chatTime
+                    - chatContent
+                - chat2
+                    - sentBy
+                    - chatDate
+                    - chatTime
+                    - chatContent
+
+- Message
+    - uid
+        - lastChat
+        - lastChatDate
+        - chatID
+        - uidPartner              
+    - uid doctor
+        - lastChat
+        - lastChatDate
+        - chatID
+        - uidPartner

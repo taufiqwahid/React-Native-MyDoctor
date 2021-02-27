@@ -11,7 +11,7 @@ import {
 
 import {colors, fonts} from '../../../utils';
 
-const List = ({type, image, icon, name, desc, onPress, key}) => {
+const List = ({type, image, icon, name, desc, onPress}) => {
   const Icon = () => {
     switch (icon) {
       case 'profile':
@@ -28,7 +28,7 @@ const List = ({type, image, icon, name, desc, onPress, key}) => {
     }
   };
   return (
-    <TouchableOpacity style={styles.page} onPress={onPress} key={key}>
+    <TouchableOpacity style={styles.page} onPress={onPress}>
       {icon ? <Icon /> : <Image style={styles.image} source={image} />}
       <View style={styles.doctor}>
         <Text style={styles.name}>{name}</Text>

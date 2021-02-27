@@ -3,9 +3,9 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import {IconSend, IconSendActive} from '../../../assets/icon';
 import {colors} from '../../../utils';
 
-const IconBtn = ({active}) => {
+const IconBtn = ({active, onPress}) => {
   return (
-    <TouchableOpacity style={styles.page(active)}>
+    <TouchableOpacity style={styles.page(active)} onPress={onPress}>
       {active && <IconSend />}
       {!active && <IconSendActive />}
     </TouchableOpacity>
