@@ -5,7 +5,6 @@ import Other from './other.js';
 
 const ChatItem = ({isMe, data, photo}) => {
   const dataChat = data.data;
-  console.log('object', dataChat);
   if (isMe) {
     return (
       <IsMe chatContent={dataChat.chatContent} chatTime={dataChat.chatTime} />

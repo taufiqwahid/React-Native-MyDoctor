@@ -36,8 +36,8 @@ const UpdateProfile = ({navigation}) => {
       {
         mediaType: 'photo',
         includeBase64: true,
-        maxHeight: 200,
-        maxWidth: 200,
+        maxHeight: 300,
+        maxWidth: 300,
         quality: 1,
       },
       (response) => {

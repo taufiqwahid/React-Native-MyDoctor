@@ -7,7 +7,8 @@ import {colors, fonts, getChatTime, setChatDate} from '../../utils';
 import {Firebase} from '../../config';
 
 const Chating = ({navigation, route}) => {
-  const dataDoctor = route.params.params;
+  const dataDoctor = route.params;
+  console.log(dataDoctor);
   const [chatContent, setChatContent] = useState('');
   const user = Firebase.auth().currentUser;
   const chatID = `${user.uid}_${dataDoctor.uid}`;
@@ -39,7 +40,7 @@ const Chating = ({navigation, route}) => {
 
           setChatData(allDataChat);
         } else {
-          console.log('tidak ada ');
+          console.log('nothing');
         }
       });
   }, []);
@@ -52,15 +53,29 @@ const Chating = ({navigation, route}) => {
       chatTime: getChatTime(today),
       chatContent: chatContent,
     };
-    const urlFirebase = `chatting/${chatID}/allChat/${setChatDate(today)}`;
+    const urlChatting = `chatting/${chatID}/allChat/${setChatDate(today)}`;
 
+    const urlMessageUser = `message/${user.uid}/${chatID}`;
+    const urlMessageDoctor = `message/${dataDoctor.uid}/${chatID}`;
+    const dataHistoryMessageForUser = {
+      lastContentChat: chatContent,
+      lastChatDate: today.getTime(),
+      uidPartner: dataDoctor.uid,
+    };
+    const dataHistoryMessageDoctor = {
+      lastContentChat: chatContent,
+      lastChatDate: today.getTime(),
+      uidPartner: user.uid,
+    };
     setChatContent(chatContent);
 
     Firebase.database()
-      .ref(urlFirebase)
+      .ref(urlChatting)
       .push(data)
       .then(() => {
         setChatContent('');
+        Firebase.database().ref(urlMessageUser).set(dataHistoryMessageForUser);
+        Firebase.database().ref(urlMessageDoctor).set(dataHistoryMessageDoctor);
       })
       .catch((error) => {
         console.log(error);
@@ -76,20 +91,21 @@ const Chating = ({navigation, route}) => {
         onPress={() => navigation.goBack()}
       />
       <ScrollView style={styles.content}>
-        {chatData.map((item) => {
+        {chatData.map((item, index) => {
           return (
-            <>
+            <View key={index}>
               <Text style={styles.chatDate}>{item.id}</Text>
-              {item.data.map((item) => {
+              {item.data.map((item, index) => {
                 return (
                   <ChatItem
+                    key={index}
                     isMe={user.uid === item.data.sendBy}
                     data={item}
                     photo={dataDoctor.photo}
                   />
                 );
               })}
-            </>
+            </View>
           );
         })}
       </ScrollView>
