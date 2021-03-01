@@ -8,11 +8,11 @@ import {Firebase} from '../../config';
 
 const Chating = ({navigation, route}) => {
   const dataDoctor = route.params;
-  console.log(dataDoctor);
   const [chatContent, setChatContent] = useState('');
   const user = Firebase.auth().currentUser;
   const chatID = `${user.uid}_${dataDoctor.uid}`;
   const [chatData, setChatData] = useState([]);
+
   useEffect(() => {
     Firebase.database()
       .ref(`chatting/${chatID}/allChat`)
