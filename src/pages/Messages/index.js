@@ -27,6 +27,7 @@ const Messages = ({navigation}) => {
             await Firebase.database()
               .ref(`doctors/${data[key].uidPartner}`)
               .once('value', (item) => {
+                dispatch({type: 'SET_LOADING', value: false});
                 if (item) {
                   const detailDoctor = item.val();
                   setDetailDoctor(detailDoctor);
@@ -35,7 +36,6 @@ const Messages = ({navigation}) => {
                     ...data[key],
                     detailDoctor: detailDoctor,
                   });
-                  dispatch({type: 'SET_LOADING', value: false});
                 }
               });
           });
@@ -43,6 +43,7 @@ const Messages = ({navigation}) => {
           await Promise.all(promises);
           sethistoryChat(dataHistoryChat);
         } else {
+          dispatch({type: 'SET_LOADING', value: false});
           console.log('nothing');
         }
       });

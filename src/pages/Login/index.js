@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {ILLogo} from '../../assets';
 import {Button, Gap, Input, Link} from '../../components';
@@ -44,9 +44,9 @@ const Login = ({navigation}) => {
   return (
     <>
       <View style={styles.page}>
-        <ILLogo />
-        <Text style={styles.title}>Masuk dan mulai berkonsultasi</Text>
-        <View style={styles.form}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.form}>
+          <ILLogo />
+          <Text style={styles.title}>Masuk dan mulai berkonsultasi</Text>
           <Input
             label="Email Address"
             value={form.email}
@@ -67,14 +67,14 @@ const Login = ({navigation}) => {
           <Link size={12} text="Forgot My Password" />
           <Gap height={40} />
           <Button title="Sign In" onPress={() => signIn()} />
-        </View>
-        <Gap height={30} />
-        <Link
-          onPress={() => navigation.replace('Register')}
-          size={16}
-          text="Create New Account"
-          textAlign="center"
-        />
+          <Gap height={30} />
+          <Link
+            onPress={() => navigation.replace('Register')}
+            size={16}
+            text="Create New Account"
+            textAlign="center"
+          />
+        </ScrollView>
       </View>
       {stateGlobal.loading && <Loading />}
     </>
